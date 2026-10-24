@@ -63,6 +63,10 @@ def compute_metrics(
         skew=float(sps.skew(returns)),
         kurtosis=float(sps.kurtosis(returns, fisher=False)),
     )
+    if isinstance(returns.index, pd.DatetimeIndex):
+        monthly = (1.0 + returns).groupby(returns.index.to_period("M")).prod() - 1.0
+        monthly = monthly[monthly != 0]
+        out["monthly_win_rate"] = float((monthly > 0).mean()) if len(monthly) else float("nan")
     if turnover is not None:
         out["annual_turnover"] = float(turnover.mean() * ppy)
     if costs is not None:

@@ -12,7 +12,7 @@ from __future__ import annotations
 import os
 from abc import ABC, abstractmethod
 from collections.abc import Callable, Mapping
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 from enum import Enum
 
 from ..backtest.engine import CostModel
@@ -87,6 +87,27 @@ class PaperBroker(BrokerAdapter):
 
     def get_cash(self) -> float:
         return self.cash
+
+    def to_dict(self) -> dict:
+        return {
+            "cash": self.cash,
+            "positions": self.positions,
+            "orders": [
+                {"order": asdict(st.order), "status": st.status.value, "filled_qty": st.filled_qty,
+                 "avg_price": st.avg_price, "reason": st.reason}
+                for st in self.orders.values()
+            ],
+        }
+
+    @classmethod
+    def from_dict(cls, d: dict, cost: CostModel | None = None) -> "PaperBroker":
+        b = cls(d["cash"], cost)
+        b.positions = {k: int(v) for k, v in d.get("positions", {}).items()}
+        for o in d.get("orders", []):
+            order = Order(**o["order"])
+            b.orders[order.client_order_id] = OrderState(
+                order, OrderStatus(o["status"]), o.get("filled_qty", 0), o.get("avg_price"), o.get("reason"))
+        return b
 
     def process_fills(self, prices: Mapping[str, float]) -> None:
         slip = self.cost.one_way_bps / 1e4

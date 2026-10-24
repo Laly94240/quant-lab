@@ -52,3 +52,40 @@ store_dir: runs
 
 live_trading:
   enabled: false         # DISABLED. Never enable before Stage 4 and explicit written approval.
+
+# --------------------------------------------------------------------------------------------
+# Paper trading (Stage 2): simulated money, one step per trading day. Orders decided at the close
+# of day D are filled at the close of D+1 (same convention as the backtest).
+paper:
+  strategy: {name: trend_sma, params: {lookback: 200, rebalance: M, weighting: equal}}
+  initial_cash: 10000
+  cash_buffer: 0.01        # size orders on 99% of equity so a next-day price rise cannot overspend
+  min_trade_value: 50
+  state_file: paper/state.json
+  notify_summary: true
+
+# Discord: webhook URL comes from the DISCORD_WEBHOOK_URL environment variable (never from this file)
+notify:
+  discord: {enabled: true}
+
+# News layer: ADVISORY ONLY. Cannot create orders. See docs/NEWS_AGENT.md.
+news:
+  lookback_hours: 24
+  max_items: 40
+  # Verify these URLs before relying on them (not reachable from the development sandbox).
+  rss_feeds:
+    - https://www.federalreserve.gov/feeds/press_all.xml
+    - https://www.ecb.europa.eu/rss/press.xml
+  x:                        # X (Twitter) API: paid pay-per-use access, requires X_BEARER_TOKEN
+    enabled: false
+    queries:
+      - "(Fed OR ECB OR tariffs OR sanctions OR election) lang:en -is:retweet"
+    max_results: 20
+    max_posts_per_run: 40   # hard cost guard
+  llm: {model: claude-sonnet-5-5, max_tokens: 1500}   # key from ANTHROPIC_API_KEY
+  overlay:                  # reduce-only exposure overlay. OFF: it cannot be backtested.
+    enabled: false
+    max_reduction: 0.5
+    min_severity: high
+    ttl_hours: 24
+  briefing_file: paper/latest_briefing.json

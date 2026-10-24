@@ -29,7 +29,11 @@ classique, testé, qui ne dépend pas d'une décision générée.
    │              stats (PSR/DSR), gates (critères pré-enregistrés)
  experiments/     historique append-only : config, hash de code et de données, résultats, nb d'essais
  pipeline.py      orchestration de bout en bout ; cli.py : `quantlab fetch | run`
- execution/       Order, génération d'ordres, BrokerAdapter, PaperBroker, garde-fous live
+ execution/       Order, génération d'ordres, BrokerAdapter, PaperBroker, NotifyingBroker, garde-fous live
+ notify/          Discord (webhook) : notifications d'ordres, d'arrêts de sécurité et de briefings
+ news/            RSS / X, nettoyage, briefing LLM validé, surcouche « réduction seule » (conseil uniquement)
+ paper.py         un pas quotidien de paper trading, état persisté, arrêt de sécurité
+ report.py        rapport HTML statique (recherche + paper trading)
 ```
 
 Règle de dépendance : `execution` → `risk`, `backtest.engine` (coûts) ; `strategies` ne connaît ni le
@@ -63,5 +67,6 @@ implémentant `BrokerAdapter` sans toucher au reste.
 ## Ce qui n'existe pas encore (à ne pas supposer)
 
 - Aucun adaptateur broker réel (IBKR ou autre) : non écrit, non testé contre une vraie API.
-- Aucun runner de paper trading planifié, ni alertes, ni boucle de supervision.
-- Aucune couche « agent LLM » : le moteur est prêt à être piloté, mais le pilotage autonome reste à construire.
+- Le runner de paper trading est un pas quotidien à lancer (cron local) ; pas de planification ni de supervision intégrées.
+- Le briefing LLM, X, les flux RSS et le webhook Discord n'ont pas été testés contre les vrais services (réponses simulées).
+- L'agent de recherche autonome (hypothèse → code → backtest) n'existe pas : seule la couche « news » est conseillère.

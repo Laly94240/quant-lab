@@ -1,0 +1,42 @@
+name: research-real-data
+# Manual run on GitHub's runners (which have internet access): snapshot real Yahoo prices, run the
+# walk-forward research pipeline, publish the summary in the run page and the HTML report as an artifact.
+# Caveat: Yahoo may throttle shared CI IP addresses (HTTP 429). If that happens, run `quantlab fetch`
+# locally instead and use the `csv` provider.
+on:
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Rerun even if an identical experiment is already stored"
+        type: boolean
+        default: false
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[yahoo]"
+      - run: quantlab fetch --config configs/etf_trend.yaml
+      - name: Walk-forward research
+        run: |
+          FORCE=""
+          if [ "${{ inputs.force }}" = "true" ]; then FORCE="--force"; fi
+          quantlab run --config configs/etf_trend.yaml --provider csv $FORCE | tee summary.txt
+      - run: quantlab report --runs runs --out report/index.html
+      - name: Show the summary on the run page
+        run: |
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          cat summary.txt >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: research-output
+          path: |
+            report/
+            runs/
+            summary.txt
+            data/raw/

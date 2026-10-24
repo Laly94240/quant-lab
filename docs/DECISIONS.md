@@ -101,3 +101,25 @@ ajuste pas après coup. Réussir = « éligible au paper trading », jamais « r
   marche aléatoire (aucun edge) → 0 passage sur 60 tirages pour chaque stratégie ; régime persistant (edge de tendance planté) →
   tendance SMA validée 16 fois sur 30, momentum 4 fois sur 30. La détection n'est donc que partielle : un rejet ne prouve pas
   l'absence d'edge (échantillon OOS de ~10 ans, Sharpe estimé avec une forte incertitude).
+
+## 9. L'objectif « fonctionner à plus de 50 % »
+
+Cette phrase peut désigner plusieurs choses, qui n'ont pas du tout la même difficulté :
+
+| Lecture | Faisable ? | Remarque |
+|---|---|---|
+| Part de **jours** gagnants > 50 % | Souvent, sans que cela prouve quoi que ce soit | Un portefeuille long-only dans un marché haussier gagne ~52-55 % des jours par simple dérive ; une stratégie peut perdre 60 % des jours et rester profitable si ses gains moyens sont plus gros |
+| Part de **mois** gagnants > 50 % | Plausible pour de la tendance | Même réserve |
+| **Rendement** annuel > 50 % | Non, pas de façon réaliste | Hors de portée d'une stratégie diversifiée sur ETF sans levier ; promettre cela serait trompeur |
+
+Les deux premiers taux sont calculés et affichés (jours et mois gagnants, sur la période hors échantillon et sur les 5 dernières
+années). **Je ne peux pas garantir qu'ils dépassent 50 %**, et je ne règle pas les paramètres jusqu'à ce qu'ils le fassent :
+ce serait du surapprentissage, exactement ce que ta spécification interdit. Le critère de validation reste celui des gates (Sharpe
+hors échantillon, Sharpe déflaté, PSR contre benchmark, drawdown, stress des coûts).
+
+## 10. Notifications, news et GitHub
+
+- **Discord** : webhook entrant (aucun bot à héberger). Le secret reste dans `DISCORD_WEBHOOK_URL`.
+- **X / Twitter** : accès payant à l'usage ; détail et protections dans `docs/NEWS_AGENT.md`. Les flux RSS (gratuits) sont la source par défaut.
+- **GitHub** : le dépôt contient la CI (tests, lint) et un workflow manuel `research-real-data` qui télécharge les vrais
+  prix sur les serveurs de GitHub, lance le walk-forward et publie le résumé et le rapport HTML.

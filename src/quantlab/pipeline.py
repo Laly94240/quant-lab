@@ -7,6 +7,7 @@ from .backtest import (
     BacktestConfig,
     CostModel,
     GateCriteria,
+    compute_metrics,
     evaluate_candidate,
     simulate,
     walk_forward,
@@ -106,6 +107,14 @@ def run_research(
             wf.oos, bench, stressed, criteria, n_trials_total, var_trials,
             ppy=bt.periods_per_year, rf_annual=rf,
         )
+        n5 = 5 * bt.periods_per_year
+
+        def last5(res, n5=n5):
+            return compute_metrics(res.returns.iloc[-n5:], res.turnover.iloc[-n5:], res.costs.iloc[-n5:],
+                                   res.exposure.iloc[-n5:], rf, bt.periods_per_year)
+
+        report["last_5y"] = {"years": min(len(wf.oos.returns), n5) / bt.periods_per_year,
+                             "strategy": last5(wf.oos), "benchmark": last5(bench)}
         report.update(
             strategy=spec["name"], is_synthetic=is_synthetic,
             oos_start=str(wf.oos_start.date()), folds=[f.__dict__ for f in wf.folds],
@@ -115,7 +124,7 @@ def run_research(
         if store:
             run_id = store.save(research_id=research_id, config=run_cfg, report=report,
                                 oos_returns=wf.oos.returns, data_info=data_info,
-                                n_trials=wf.n_trials)
+                                n_trials=wf.n_trials, benchmark_returns=bench.returns)
         report["run_id"] = run_id
         reports.append(report)
 
@@ -156,6 +165,19 @@ def format_summary(result: dict) -> str:
         b = result["reports"][0]["benchmark_metrics"]
         lines.append(f"{'benchmark':<14}{f(b.get('sharpe')):>11}{f(b.get('cagr'), True):>8}"
                      f"{f(b.get('max_drawdown'), True):>8}{f(b.get('annual_turnover'), nd=1):>9}")
+    if result["reports"]:
+        lines += ["", "Last 5 years of the out-of-sample period (win% = share of positive days / months):"]
+        h2 = f"{'strategy':<14}{'Sharpe':>8}{'CAGR':>8}{'MaxDD':>8}{'Win% day':>10}{'Win% mo':>9}"
+        lines += [h2, "-" * len(h2)]
+        for r in result["reports"]:
+            m = r["last_5y"]["strategy"]
+            lines.append(f"{r['strategy']:<14}{f(m.get('sharpe')):>8}{f(m.get('cagr'), True):>8}"
+                         f"{f(m.get('max_drawdown'), True):>8}{f(m.get('daily_win_rate'), True):>10}"
+                         f"{f(m.get('monthly_win_rate'), True):>9}")
+        b = result["reports"][0]["last_5y"]["benchmark"]
+        lines.append(f"{'benchmark':<14}{f(b.get('sharpe')):>8}{f(b.get('cagr'), True):>8}"
+                     f"{f(b.get('max_drawdown'), True):>8}{f(b.get('daily_win_rate'), True):>10}"
+                     f"{f(b.get('monthly_win_rate'), True):>9}")
     for s in result["skipped"]:
         lines.append(f"skipped {s['strategy']}: {s['reason']} ({s['run_id']}, {s['verdict']})")
     lines += ["", "PASS_TO_PAPER = eligible for paper trading only. It is not a profitability claim "

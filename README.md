@@ -1,71 +1,95 @@
 # quantlab
 
-Cadre modulaire pour **rechercher, backtester et valider** des stratégies systématiques, avec des
-garde-fous d'exécution déterministes. État : **prototype de la phase 0** (pipeline de recherche complet,
-exécution limitée à un broker papier interne).
+Cadre modulaire pour **rechercher, valider, suivre en paper trading** des stratégies systématiques, avec garde-fous
+déterministes, notifications Discord et une couche « news » **conseillère** (jamais exécutante).
 
-> Le trading réel est **désactivé par défaut** et n'est branché sur aucun broker. Aucune performance réelle n'est
-> annoncée : le prototype n'a été exécuté que sur des données synthétiques de contrôle.
+> **Le trading réel est désactivé par défaut et n'est branché sur aucun broker.** Aucune performance réelle n'est annoncée :
+> le dépôt n'a été exécuté que sur des données synthétiques de contrôle. « Éligible au paper trading » ne veut pas dire « rentable ».
+
+## Ce que contient le dépôt
+
+| Brique | Rôle | État |
+|---|---|---|
+| Recherche (`quantlab run`) | Walk-forward, coûts, Sharpe déflaté, gates, historique des essais | testé (données synthétiques) |
+| Rapport (`quantlab report`) | Page HTML statique : résultats, 5 dernières années, jours/mois gagnants, paper trading | testé (structure et échappement) |
+| Paper trading (`quantlab paper-run`) | Un pas quotidien, argent fictif, arrêt de sécurité | testé (données synthétiques) |
+| Discord (`quantlab notify-test`) | Message à chaque ordre soumis / exécuté / rejeté / annulé, et à chaque arrêt de sécurité | testé avec transport simulé |
+| News (`quantlab news-brief`) | RSS + X → briefing validé → Discord, **sans pouvoir d'ordre** | testé avec réponses simulées |
+| Broker réel | — | **non écrit** |
 
 ## Installation
 
 ```bash
 python -m venv .venv && source .venv/bin/activate
-pip install -e ".[dev]"          # + ".[yahoo]" pour télécharger depuis Yahoo
-pytest -q                         # 55 tests
+pip install -e ".[dev,yahoo]"
+pytest -q                          # ~100 tests
 ```
 
-## Démarrage rapide
+## 1. Tester sur de vraies données Yahoo
 
 ```bash
-# 1. Vérifier que le pipeline est sain (données SYNTHÉTIQUES, aucun sens financier)
-quantlab run --config configs/etf_trend.yaml --provider synthetic --scenario random_walk --seed 5
-quantlab run --config configs/etf_trend.yaml --provider synthetic --scenario regime      --seed 5
-
-# 2. Données réelles : figer un snapshot CSV (une seule fois), puis rejouer hors-ligne
-pip install -e ".[yahoo]"
-quantlab fetch --config configs/etf_trend.yaml      # écrit data/raw/<TICKER>.csv
-quantlab run   --config configs/etf_trend.yaml      # provider csv par défaut
+quantlab fetch --config configs/etf_trend.yaml       # snapshot CSV dans data/raw/ (une fois)
+quantlab run   --config configs/etf_trend.yaml       # walk-forward + gates + sauvegarde dans runs/
+quantlab report --runs runs --out report/index.html  # ouvre report/index.html
 ```
 
-Sortie : tableau OOS (Sharpe, CAGR, drawdown, rotation, Sharpe déflaté, PSR vs benchmark) et un verdict
-`REJECT` / `PASS_TO_PAPER`. Chaque run est sauvegardé dans `runs/<id>/` (config, manifeste avec hash git et hash des
-données, rapport, rendements OOS). Un run identique n'est pas relancé (`--force` pour l'imposer).
+Sans rien installer en local : onglet **Actions → research-real-data → Run workflow** sur GitHub (les serveurs de GitHub ont
+accès à Internet). Le résumé s'affiche dans la page du run et le rapport HTML est téléchargeable. Yahoo peut limiter les adresses
+partagées des serveurs de CI (erreur 429) : dans ce cas, lance `quantlab fetch` chez toi.
 
-## Lire un résultat avec méfiance
+La sortie contient, pour la période hors échantillon **et** pour les 5 dernières années : Sharpe, CAGR, drawdown, **jours gagnants,
+mois gagnants**, rotation, Sharpe déflaté, PSR contre benchmark. Voir `docs/DECISIONS.md` §9 pour ce que « plus de 50 % » peut
+signifier et pourquoi il n'est pas garanti.
 
-- `PASS_TO_PAPER` veut dire « mérite d'être suivi en paper trading », jamais « rentable ».
-- Le Sharpe déflaté tient compte de **tous** les jeux de paramètres déjà essayés sous le même `research_id` : changer
-  `research_id` pour repartir de zéro revient à tricher.
-- Modifie les gates **avant** de lancer sur données réelles, pas après.
+## 2. Notifications Discord
+
+1. Discord : *Paramètres du salon → Intégrations → Webhooks → Nouveau webhook*, copie l'URL.
+2. `export DISCORD_WEBHOOK_URL="https://discord.com/api/webhooks/…"` (secret : jamais dans le code, `.env` est ignoré par git).
+3. `quantlab notify-test` puis `quantlab paper-run --config configs/etf_trend.yaml`.
+
+Chaque message indique clairement `[PAPER]` (simulation) ou `[LIVE]` (ordre réel, indisponible dans cette version).
+
+## 3. Paper trading quotidien
+
+```bash
+quantlab paper-run --config configs/etf_trend.yaml    # à lancer après la clôture, par ex. via cron
+```
+
+Les ordres décidés à la clôture du jour D sont exécutés à la clôture de D+1 (même convention que le backtest). Données invalides ou
+périmées, perte journalière ou drawdown excessifs : aucun ordre, alerte Discord ; l'arrêt de sécurité reste actif jusqu'à
+`--clear-halt` (décision humaine).
+
+## 4. Agent news (X + RSS), conseil uniquement
+
+Voir `docs/NEWS_AGENT.md` : défenses contre l'injection de prompt, coût de l'API X, surcouche « réduction seule » (désactivée).
+
+## Publier sur GitHub
+
+```bash
+git remote add origin git@github.com:<toi>/quant-lab.git     # ou : gh repo create quant-lab --private --source=. --push
+git push -u origin main
+```
+
+Dépôt **privé** conseillé. Ajoute les secrets éventuels dans *Settings → Secrets and variables → Actions* ; ne commite jamais
+`.env`, `data/raw/` (conditions d'usage de Yahoo : usage personnel) ni `paper/`.
 
 ## Structure
 
 ```
-configs/          configuration YAML (univers, coûts, risque, walk-forward, gates, stratégies)
-docs/             ARCHITECTURE.md, DECISIONS.md (marché, données, brokers, feuille de route)
+configs/          configuration YAML (univers, coûts, risque, walk-forward, gates, stratégies, paper, news)
+docs/             ARCHITECTURE.md, DECISIONS.md, NEWS_AGENT.md
 src/quantlab/
-  data/           providers CSV / Yahoo / synthétique, validation qualité
-  strategies/     contrat anti look-ahead, tendance SMA, momentum, benchmark
-  risk/           limites de poids, levier, perte jour, drawdown, données périmées
-  backtest/       moteur (retard d'exécution, dérive, coûts), métriques, walk-forward, PSR/DSR, gates
-  experiments/    historique append-only des runs
-  execution/      ordres, BrokerAdapter, PaperBroker, garde-fous live, validation humaine
-  pipeline.py cli.py
-tests/            55 tests (moteur chiffré à la main, absence de fuite, contrôle des faux positifs, ...)
+  data/ strategies/ risk/ backtest/ experiments/   recherche
+  execution/      ordres, BrokerAdapter, PaperBroker, NotifyingBroker, garde-fous live
+  notify/         Discord
+  news/           RSS, X, nettoyage, briefing LLM validé, surcouche réduction seule
+  paper.py report.py pipeline.py cli.py
+tests/
+.github/workflows/  ci.yml (tests + lint), research.yml (recherche sur données réelles, manuel)
 ```
-
-## Ajouter une stratégie
-
-1. Créer une classe `Strategy` avec `target_weights(prices)` (la ligne *t* n'utilise que `prices[: t+1]`).
-2. L'enregistrer dans `strategies/__init__.py` (`REGISTRY`).
-3. L'ajouter dans `configs/*.yaml` avec sa `grid`. Le test anti look-ahead est lancé automatiquement.
-
-## Secrets
-
-Jamais dans le code. Variables d'environnement ou gestionnaire de secrets ; `.env` est ignoré par git (voir `.env.example`).
 
 ## Limites connues
 
-Voir `docs/DECISIONS.md` §8. En résumé : pas de données réelles testées ici, barres journalières, coûts proportionnels,
-pas de fiscalité ni de change, aucun adaptateur broker réel.
+Pas de données réelles testées ici ; barres journalières ; coûts proportionnels ; pas de fiscalité ni de change ; aucun
+adaptateur broker réel ; X, RSS, Anthropic et Discord testés avec des réponses simulées, pas contre les vrais services.
+Information technique, pas un conseil en investissement.

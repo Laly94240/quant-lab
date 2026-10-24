@@ -9,12 +9,14 @@ from .broker import (
     reconcile,
     require_approval,
 )
+from .notifying import NotifyingBroker
 from .orders import Order, generate_orders, make_client_order_id
 
 __all__ = [
     "BrokerAdapter",
     "LiveTradingDisabled",
     "LiveTradingSettings",
+    "NotifyingBroker",
     "Order",
     "OrderState",
     "OrderStatus",

@@ -73,7 +73,8 @@ class ExperimentStore:
         return sum(r.get("n_trials", 0) for r in self._read_index() if r["research_id"] == research_id)
 
     def save(self, *, research_id: str, config: dict, report: dict, oos_returns: pd.Series,
-             data_info: dict, n_trials: int) -> str:
+             data_info: dict, n_trials: int,
+             benchmark_returns: pd.Series | None = None) -> str:
         cfg_hash = config_hash(config)
         stamp = datetime.now(UTC).strftime("%Y%m%dT%H%M%S%f")
         run_id = f"{stamp}_{config['strategy']['name']}_{cfg_hash[:6]}"
@@ -93,6 +94,8 @@ class ExperimentStore:
         (d / "manifest.json").write_text(dumps(manifest, indent=2))
         (d / "report.json").write_text(dumps(report, indent=2))
         oos_returns.rename("net_return").to_csv(d / "oos_returns.csv")
+        if benchmark_returns is not None:
+            benchmark_returns.rename("net_return").to_csv(d / "benchmark_returns.csv")
         row = {
             "run_id": run_id, "config_hash": cfg_hash, "research_id": research_id,
             "strategy": config["strategy"]["name"], "n_trials": n_trials,
