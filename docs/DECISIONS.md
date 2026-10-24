@@ -97,4 +97,7 @@ ajuste pas après coup. Réussir = « éligible au paper trading », jamais « r
 - Barres journalières, exécution à la clôture suivante : pas de modèle d'impact de marché ni de carnet d'ordres.
 - Coûts proportionnels uniquement (pas de minimum par ordre), pas de fiscalité, pas de change.
 - Le test de détection du look-ahead est empirique (troncature) : il attrape les fuites courantes, pas toutes.
-- Les gates fixent un compromis faux positifs / puissance ; sur marche aléatoire synthétique elles n'ont rien laissé passer (60 tirages), et sur un edge planté la détection n'est que partielle : un rejet ne prouve pas l'absence d'edge.
+- Les gates fixent un compromis faux positifs / puissance, mesuré avec la config du dépôt sur données synthétiques :
+  marche aléatoire (aucun edge) → 0 passage sur 60 tirages pour chaque stratégie ; régime persistant (edge de tendance planté) →
+  tendance SMA validée 16 fois sur 30, momentum 4 fois sur 30. La détection n'est donc que partielle : un rejet ne prouve pas
+  l'absence d'edge (échantillon OOS de ~10 ans, Sharpe estimé avec une forte incertitude).
