@@ -1,0 +1,18 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: pip install -e ".[dev]"
+      - run: ruff check src tests
+      - run: pytest -q
+      # Pipeline smoke test on SYNTHETIC data only (no network, no secrets, no broker).
+      - run: quantlab run --config configs/etf_trend.yaml --provider synthetic --scenario random_walk --store-dir /tmp/runs

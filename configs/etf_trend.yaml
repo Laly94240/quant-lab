@@ -1,0 +1,54 @@
+# Research question: do simple trend / momentum rules on a diversified ETF basket add
+# risk-adjusted value over the passive basket, after realistic costs and out of sample?
+research_id: etf_gtaa_daily_v1
+
+# RESEARCH PROXIES: US-listed ETFs (deep, clean daily history). Retail investors resident in the
+# EU generally cannot BUY US-listed ETFs (PRIIPs/KID rule), so for execution each line must be
+# mapped to a UCITS equivalent and its history re-tested (see docs/DECISIONS.md).
+universe: [SPY, EFA, EEM, IEF, TLT, GLD, DBC, VNQ]
+
+data:
+  provider: csv          # run `quantlab fetch` once to snapshot Yahoo data into raw_dir
+  raw_dir: data/raw
+  start: "2007-01-01"    # DBC (2006) is the shortest history; common start is computed
+  end: null
+
+# One-way costs in bps of traded notional. ASSUMPTIONS to calibrate against broker statements.
+costs: {commission_bps: 2.0, spread_bps: 3.0, slippage_bps: 2.0}
+
+backtest:
+  execution_delay: 1     # trade at the NEXT close after the signal (conservative)
+  cash_rate: 0.0
+  rf_annual: 0.0
+
+risk:
+  max_position_weight: 0.35
+  max_gross_exposure: 1.0
+  allow_short: false
+
+walk_forward: {train_years: 5, test_years: 1, anchored: true}
+
+benchmark: {name: equal_weight_bh, params: {rebalance: M}}
+
+# Pre-registered gates: decide them BEFORE looking at results, do not tune them afterwards.
+gates:
+  min_oos_years: 5.0
+  min_oos_sharpe: 0.4
+  min_dsr: 0.95
+  max_drawdown: 0.35
+  min_psr_vs_benchmark: 0.95
+  min_cost_stress_sharpe: 0.0
+cost_stress_multiplier: 2.0
+
+strategies:
+  - name: trend_sma
+    fixed: {rebalance: M, weighting: equal}
+    grid: {lookback: [100, 150, 200, 250]}
+  - name: xs_momentum
+    fixed: {rebalance: M, skip: 21, abs_filter: true}
+    grid: {lookback: [126, 252], top_k: [2, 3]}
+
+store_dir: runs
+
+live_trading:
+  enabled: false         # DISABLED. Never enable before Stage 4 and explicit written approval.
