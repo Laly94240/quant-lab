@@ -11,7 +11,7 @@ data:
   provider: csv          # run `quantlab fetch` once to snapshot Yahoo data into raw_dir
   raw_dir: data/raw
   start: "2007-01-01"    # DBC (2006) is the shortest history; common start is computed
-  end: null
+  end: "2023-12-31"
 
 # One-way costs in bps of traded notional. ASSUMPTIONS to calibrate against broker statements.
 costs: {commission_bps: 2.0, spread_bps: 3.0, slippage_bps: 2.0}
