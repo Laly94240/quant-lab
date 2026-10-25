@@ -1,0 +1,2 @@
+{"config_hash": "49d13f8dfc27", "is_synthetic": false, "n_trials": 4, "oos_sharpe": 0.5289112460113927, "research_id": "etf_gtaa_daily_v1", "run_id": "20261025T105443492475_trend_sma_49d13f", "strategy": "trend_sma", "verdict": "REJECT"}
+{"config_hash": "5d67c6254f57", "is_synthetic": false, "n_trials": 4, "oos_sharpe": 0.36913550156526886, "research_id": "etf_gtaa_daily_v1", "run_id": "20261025T105443790056_xs_momentum_5d67c6", "strategy": "xs_momentum", "verdict": "REJECT"}
