@@ -1,0 +1,46 @@
+# Research question (pre-registered in docs/JOURNAL.md): can simple rules, traded ONLY between the open and
+# the close of a session (flat overnight), beat a passive basket after realistic day-trading costs, out of sample?
+# Daily bars only: no stops, targets or intraday path logic. See docs/DAYTRADE.md.
+research_id: etf_daytrade_daily_v1
+
+universe: [SPY, EFA, EEM, IEF, TLT, GLD, DBC, VNQ]
+
+data:
+  provider: csv          # `quantlab fetch --config configs/etf_daytrade.yaml` snapshots OPEN/HIGH/LOW/CLOSE
+  raw_dir: data/raw
+  start: "2007-01-01"
+  end: "2023-12-31"      # locked period (CLAUDE.md): data after this date is not read during development
+
+# One-way costs in bps of traded notional (assumptions to calibrate). A day trade pays them twice (open and close).
+costs: {commission_bps: 2.0, spread_bps: 3.0, slippage_bps: 2.0}
+
+daytrade:
+  open_close_extra_bps: 2.0   # extra per side: fills at the opening / closing auction are worse than mid-session
+
+risk:
+  max_position_weight: 0.35
+  max_gross_exposure: 1.0
+  allow_short: false
+
+walk_forward: {train_years: 5, test_years: 1, anchored: true}
+
+# Same pre-registered gates as the daily study. Do not change them after seeing results (see CLAUDE.md).
+gates:
+  min_oos_years: 5.0
+  min_oos_sharpe: 0.4
+  min_dsr: 0.95
+  max_drawdown: 0.35
+  min_psr_vs_benchmark: 0.95
+  min_cost_stress_sharpe: 0.0
+cost_stress_multiplier: 2.0
+
+# Hypotheses H1-H3, written before any test. 10 parameter sets in total.
+strategies:
+  - name: intraday_trend          # H1: the existing trend filter, exposed only between open and close
+    grid: {lookback: [100, 150, 200, 250]}
+  - name: gap_fade                # H2: buy a large gap down in an uptrend, sell at the close
+    grid: {k: [0.5, 1.0, 1.5]}
+  - name: ibs_reversal            # H3: buy after a close near the day's low in an uptrend
+    grid: {theta: [0.1, 0.2, 0.3]}
+
+store_dir: runs

@@ -19,7 +19,7 @@ def runs_dir(tmp_path_factory):
 
 def test_report_is_self_contained_flags_synthetic_and_has_no_script(runs_dir, tmp_path):
     out = write_report(runs_dir, tmp_path / "r" / "index.html")
-    html = out.read_text()
+    html = out.read_text(encoding="utf-8")
     assert "Données synthétiques" in html and "trend_sma" in html and "xs_momentum" in html
     assert "<script" not in html and "http://" not in html and "src=" not in html
     assert "<polyline" in html and "Mois gagnants" in html and "5 dernières années" in html

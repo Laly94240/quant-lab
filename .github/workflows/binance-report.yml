@@ -1,0 +1,52 @@
+name: binance-futures-report
+# Manual run: downloads PUBLIC Binance USD-M futures files (data.binance.vision, no key, no account),
+# replays the trend rule, and publishes the HTML report + JSON summary (artifact and branch `reports-output`).
+# Nothing here places orders or needs a secret.
+on:
+  workflow_dispatch:
+    inputs:
+      symbols:
+        description: "Symbols separated by spaces"
+        default: "BTCUSDT ETHUSDT BNBUSDT SOLUSDT"
+      start:
+        description: "First month (YYYY-MM)"
+        default: "2020-10"
+      lookback:
+        description: "Moving-average length in days"
+        default: "200"
+
+permissions:
+  contents: write
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e .
+      - name: Build the report
+        env:
+          SYMBOLS: ${{ inputs.symbols }}
+          START: ${{ inputs.start }}
+          LOOKBACK: ${{ inputs.lookback }}
+        run: |
+          quantlab binance-report --symbols $SYMBOLS --start "$START" --lookback "$LOOKBACK" \
+            --out report/binance_futures.html --json report/binance_futures.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: binance-futures-report
+          path: report/
+      - name: Publish to branch reports-output
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cp -r report /tmp/report_out
+          git checkout --orphan reports-output
+          git rm -rf --quiet . || true
+          cp -r /tmp/report_out/* .
+          git add binance_futures.html binance_futures.json
+          git commit -m "Binance futures report"
+          git push -f origin reports-output

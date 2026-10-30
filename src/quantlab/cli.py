@@ -6,6 +6,8 @@
   quantlab paper-run   --config CFG                 one daily paper-trading step (Discord alerts)
   quantlab news-brief  --config CFG                 news -> validated, advisory briefing
   quantlab notify-test                              send a test message to the Discord webhook
+  quantlab binance-report --symbols BTCUSDT ETHUSDT  replay the trend rule on Binance USD-M futures
+  quantlab daytrade    --config CFG                 day trading on daily bars (open -> close): walk-forward + report
 """
 from __future__ import annotations
 
@@ -82,6 +84,67 @@ def _cmd_news_brief(cfg: dict, args) -> int:
     return 0
 
 
+def _cmd_daytrade(cfg: dict, args) -> int:
+    from .data import generate_synthetic_ohlc
+    from .daytrade import clean_ohlc, format_daytrade_summary, run_daytrade_research
+    from .daytrade_report import daytrade_summary_json, render_daytrade_html
+
+    d, tickers = cfg.get("data", {}), cfg["universe"]
+    name = args.provider or d.get("provider", "csv")
+    if name == "synthetic":
+        raw, source = generate_synthetic_ohlc(tickers, seed=args.seed, scenario=args.scenario), "synthetic"
+    elif name == "yahoo":
+        raw = YahooProvider(cache_dir=d.get("raw_dir", "data/raw")).get_ohlc(tickers, d.get("start"), d.get("end"))
+        source = "yahoo"
+    else:
+        raw = CSVProvider(d.get("raw_dir", "data/raw")).get_ohlc(tickers, d.get("start"), d.get("end"))
+        source = "csv"
+    ohlc, warnings, dq = clean_ohlc(raw)
+    store = ExperimentStore(args.store_dir or cfg.get("store_dir", "runs"))
+    result = run_daytrade_research(cfg, ohlc, is_synthetic=name == "synthetic", data_source=source, store=store,
+                                   force=args.force, data_warnings=warnings, dq=dq)
+    print(format_daytrade_summary(result))
+    if result["reports"]:
+        for path, text in ((args.out, render_daytrade_html(result)), (args.json, daytrade_summary_json(result))):
+            Path(path).parent.mkdir(parents=True, exist_ok=True)
+            Path(path).write_text(text, encoding="utf-8")
+        print(f"report written to {args.out} and {args.json}")
+    return 0
+
+
+def _cmd_binance_report(args) -> int:
+    from .backtest import CostModel
+    from .crypto_report import build_report, render_html, summary_json
+    from .data import BinanceVisionProvider, generate_synthetic_prices, validate_prices
+    from .data.binance_vision import check_symbol
+
+    symbols = [check_symbol(s) for s in args.symbols]
+    funding, warnings = None, []
+    if args.synthetic:
+        prices = generate_synthetic_prices(symbols, n_days=365 * 6, seed=4, scenario="regime", start="2020-10-01",
+                                           annual_vol=0.7, annual_drift=0.3, regime_drift=0.8, freq="D",
+                                           periods_per_year=365)
+        source = "DONNÉES SYNTHÉTIQUES (aperçu du format)"
+    else:
+        prov = BinanceVisionProvider(interval="1d", cache_dir=args.cache)
+        prices = prov.get_prices(symbols, args.start)
+        funding = None if args.no_funding else prov.get_funding(symbols, args.start)
+        warnings = list(prov.warnings)
+        source = "Binance USD-M futures, fichiers publics data.binance.vision (barres journalières)"
+    prices, dq = validate_prices(prices)
+    dq.raise_if_errors()
+    warnings += [f"qualité des données : {i.message} {i.tickers or ''}".strip() for i in dq.warnings]
+    rep = build_report(prices, lookback=args.lookback, rebalance=args.rebalance,
+                       cost=CostModel(commission_bps=args.commission_bps, spread_bps=1.0, slippage_bps=2.0),
+                       funding=funding, source=source, is_synthetic=args.synthetic, warnings=warnings)
+    for path, text in ((args.out, render_html(rep)), (args.json, summary_json(rep))):
+        Path(path).parent.mkdir(parents=True, exist_ok=True)
+        Path(path).write_text(text, encoding="utf-8")
+    print(f"report written to {args.out} and {args.json} ({prices.index[0].date()} -> {prices.index[-1].date()}, "
+          f"{len(rep['trades'])} trades)")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="quantlab")
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -116,6 +179,29 @@ def main(argv: list[str] | None = None) -> int:
 
     sub.add_parser("notify-test", help="send a test message to DISCORD_WEBHOOK_URL")
 
+    br = sub.add_parser("binance-report", help="replay the trend rule on Binance USD-M futures (HTML report)")
+    br.add_argument("--symbols", nargs="+", default=["BTCUSDT", "ETHUSDT", "BNBUSDT", "SOLUSDT"])
+    br.add_argument("--start", default="2020-10", help="first month, YYYY-MM")
+    br.add_argument("--lookback", type=int, default=200)
+    br.add_argument("--rebalance", choices=["D", "W", "M"], default="M")
+    br.add_argument("--commission-bps", type=float, default=5.0)
+    br.add_argument("--cache", default="data/raw/binance")
+    br.add_argument("--out", default="report/binance_futures.html")
+    br.add_argument("--json", default="report/binance_futures.json")
+    br.add_argument("--no-funding", action="store_true")
+    br.add_argument("--synthetic", action="store_true", help="format preview on fake data (no network)")
+
+    dt = sub.add_parser("daytrade", help="day trading on daily bars (open->close): walk-forward, gates, HTML report")
+    dt.add_argument("--config", required=True)
+    dt.add_argument("--provider", choices=["csv", "yahoo", "synthetic"], default=None)
+    dt.add_argument("--scenario", choices=["random_walk", "gap_reversal"], default="random_walk",
+                    help="synthetic provider only")
+    dt.add_argument("--seed", type=int, default=0, help="synthetic provider only")
+    dt.add_argument("--store-dir", default=None)
+    dt.add_argument("--out", default="report/daytrade.html")
+    dt.add_argument("--json", default="report/daytrade.json")
+    dt.add_argument("--force", action="store_true")
+
     args = ap.parse_args(argv)
 
     if args.cmd == "notify-test":
@@ -131,12 +217,18 @@ def main(argv: list[str] | None = None) -> int:
         print(f"report written to {out}")
         return 0
 
+    if args.cmd == "binance-report":
+        return _cmd_binance_report(args)
+
     cfg = _load(args.config)
     d = cfg.get("data", {})
     tickers = cfg["universe"]
 
     if args.cmd == "news-brief":
         return _cmd_news_brief(cfg, args)
+
+    if args.cmd == "daytrade":
+        return _cmd_daytrade(cfg, args)
 
     if args.cmd == "fetch":
         prices = YahooProvider(cache_dir=d.get("raw_dir", "data/raw")).get_prices(

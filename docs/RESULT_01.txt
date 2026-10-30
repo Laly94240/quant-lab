@@ -1,0 +1,16 @@
+RESULT 01 - quantlab run, config configs/etf_trend.yaml, research_id etf_gtaa_daily_v1
+data: csv | 2007-01-03 -> 2023-12-29 | 8 assets | hash 1c526397064b1d8f
+hypotheses tested so far under this research_id: 8
+
+strategy       OOS Sharpe    CAGR   MaxDD  Turn/yr    DSR  vs bench  verdict
+----------------------------------------------------------------------------
+trend_sma            0.53    2.9%   -8.0%      3.2   0.92      0.49  REJECT  (failed: deflated_sharpe_ratio, psr_vs_benchmark)
+xs_momentum          0.37    3.9%  -32.8%      6.1   0.79      0.29  REJECT  (failed: oos_sharpe, deflated_sharpe_ratio, psr_vs_benchmark)
+benchmark            0.53    4.9%  -20.5%      1.6
+
+Last 5 years of the out-of-sample period:
+strategy        Sharpe    CAGR   MaxDD  Win% day  Win% mo
+---------------------------------------------------------
+trend_sma         0.79    4.9%   -8.0%     55.9%    58.6%
+xs_momentum       0.36    4.4%  -32.8%     55.0%    55.7%
+benchmark         0.68    7.6%  -20.5%     54.7%    60.7%

@@ -1,0 +1,55 @@
+name: daytrade-research
+# Manual run: snapshot Yahoo OPEN/HIGH/LOW/CLOSE (up to the locked end date in the config), run the daily-bar
+# day-trading study (walk-forward + gates), publish the summary on the run page, the HTML report as an artifact
+# and on branch `reports-daytrade`. Simulated research only: no orders, no secrets.
+on:
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Rerun even if an identical experiment is already stored"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  daytrade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[yahoo]"
+      - run: quantlab fetch --config configs/etf_daytrade.yaml
+      - name: Day-trading study
+        env:
+          FORCE: ${{ inputs.force }}
+        run: |
+          ARGS=""
+          if [ "$FORCE" = "true" ]; then ARGS="--force"; fi
+          quantlab daytrade --config configs/etf_daytrade.yaml --provider csv $ARGS | tee summary.txt
+      - name: Show the summary on the run page
+        run: |
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          cat summary.txt >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: daytrade-output
+          path: |
+            report/
+            runs/
+            summary.txt
+      - name: Publish to branch reports-daytrade
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir /tmp/out && cp report/daytrade.html report/daytrade.json summary.txt runs/index.jsonl /tmp/out/
+          git checkout --orphan reports-daytrade
+          git rm -rf --quiet . || true
+          cp /tmp/out/* .
+          git add -A
+          git commit -m "Day-trading study output"
+          git push -f origin reports-daytrade
