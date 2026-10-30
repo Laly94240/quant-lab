@@ -1,0 +1,15 @@
+Metadata-Version: 2.4
+Name: quantlab
+Version: 0.1.0
+Summary: Modular research, backtesting and (paper) execution framework for systematic strategies
+Requires-Python: >=3.11
+Requires-Dist: numpy>=1.26
+Requires-Dist: pandas>=2.1
+Requires-Dist: scipy>=1.11
+Requires-Dist: pyyaml>=6
+Requires-Dist: defusedxml>=0.7
+Provides-Extra: yahoo
+Requires-Dist: yfinance>=0.2.40; extra == "yahoo"
+Provides-Extra: dev
+Requires-Dist: pytest>=8; extra == "dev"
+Requires-Dist: ruff>=0.5; extra == "dev"

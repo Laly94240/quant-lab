@@ -1,0 +1,46 @@
+{
+  "costs": {
+    "commission_bps": 2.0,
+    "slippage_bps": 2.0,
+    "spread_bps": 3.0
+  },
+  "data": {
+    "end": "2023-12-29",
+    "hash": "e9dcd99bca1339f0",
+    "start": "2007-01-03"
+  },
+  "daytrade": {
+    "open_close_extra_bps": 2.0
+  },
+  "gates": {
+    "max_drawdown": 0.35,
+    "min_cost_stress_sharpe": 0.0,
+    "min_dsr": 0.95,
+    "min_oos_sharpe": 0.4,
+    "min_oos_years": 5.0,
+    "min_psr_vs_benchmark": 0.95
+  },
+  "kind": "daytrade",
+  "research_id": "etf_daytrade_daily_v1",
+  "risk": {
+    "allow_short": false,
+    "max_gross_exposure": 1.0,
+    "max_position_weight": 0.35
+  },
+  "strategy": {
+    "grid": {
+      "theta": [
+        0.1,
+        0.2,
+        0.3
+      ]
+    },
+    "name": "ibs_reversal"
+  },
+  "stress": 2.0,
+  "walk_forward": {
+    "anchored": true,
+    "test_years": 1,
+    "train_years": 5
+  }
+}

@@ -1,0 +1,290 @@
+{
+  "benchmark_metrics": {
+    "ann_vol": 0.09766853213471827,
+    "annual_cost_drag": 0.0008572395188431773,
+    "annual_turnover": 1.5586173069875948,
+    "avg_gross_exposure": 0.9993373094764745,
+    "avg_win_over_avg_loss": 0.938264387963844,
+    "cagr": 0.04856947544073731,
+    "calmar": 0.23744926064686833,
+    "daily_win_rate": 0.5401193633952255,
+    "kurtosis": 15.44673600737846,
+    "max_drawdown": -0.20454675372929143,
+    "monthly_win_rate": 0.5972222222222222,
+    "n_obs": 3018,
+    "sharpe": 0.5346230541905658,
+    "skew": -0.8273006185528793,
+    "sortino": 0.7380581262135971,
+    "total_return": 0.7647212760596611
+  },
+  "criteria": {
+    "max_drawdown": 0.35,
+    "min_cost_stress_sharpe": 0.0,
+    "min_dsr": 0.95,
+    "min_oos_sharpe": 0.4,
+    "min_oos_years": 5.0,
+    "min_psr_vs_benchmark": 0.95
+  },
+  "failed_gates": [
+    "oos_sharpe",
+    "deflated_sharpe_ratio",
+    "cost_stress_sharpe",
+    "psr_vs_benchmark"
+  ],
+  "folds": [
+    {
+      "params": {
+        "k": 1.5
+      },
+      "test_end": "2013-01-02",
+      "test_sharpe_ann": -1.4190631927080002,
+      "test_start": "2012-01-03",
+      "train_end": "2011-12-30",
+      "train_sharpe_ann": -0.4531202354370253,
+      "train_start": "2007-01-03"
+    },
+    {
+      "params": {
+        "k": 1.5
+      },
+      "test_end": "2014-01-02",
+      "test_sharpe_ann": -0.5702718631532572,
+      "test_start": "2013-01-03",
+      "train_end": "2013-01-02",
+      "train_sharpe_ann": -0.5694016780564992,
+      "train_start": "2007-01-03"
+    },
+    {
+      "params": {
+        "k": 1.5
+      },
+      "test_end": "2015-01-02",
+      "test_sharpe_ann": 0.12989517914650922,
+      "test_start": "2014-01-03",
+      "train_end": "2014-01-02",
+      "train_sharpe_ann": -0.5695150194773243,
+      "train_start": "2007-01-03"
+    },
+    {
+      "params": {
+        "k": 1.5
+      },
+      "test_end": "2015-12-31",
+      "test_sharpe_ann": -1.914643431592761,
+      "test_start": "2015-01-05",
+      "train_end": "2015-01-02",
+      "train_sharpe_ann": -0.5073463888511703,
+      "train_start": "2007-01-03"
+    },
+    {
+      "params": {
+        "k": 1.5
+      },
+      "test_end": "2016-12-30",
+      "test_sharpe_ann": -1.657332633710297,
+      "test_start": "2016-01-04",
+      "train_end": "2015-12-31",
+      "train_sharpe_ann": -0.5850122093633088,
+      "train_start": "2007-01-03"
+    },
+    {
+      "params": {
+        "k": 1.5
+      },
+      "test_end": "2018-01-02",
+      "test_sharpe_ann": -1.3982988035937816,
+      "test_start": "2017-01-03",
+      "train_end": "2016-12-30",
+      "train_sharpe_ann": -0.7188659994527135,
+      "train_start": "2007-01-03"
+    },
+    {
+      "params": {
+        "k": 1.5
+      },
+      "test_end": "2019-01-02",
+      "test_sharpe_ann": -1.4390098265793418,
+      "test_start": "2018-01-03",
+      "train_end": "2018-01-02",
+      "train_sharpe_ann": -0.7580545511777761,
+      "train_start": "2007-01-03"
+    },
+    {
+      "params": {
+        "k": 1.5
+      },
+      "test_end": "2020-01-02",
+      "test_sharpe_ann": -1.8459652957582262,
+      "test_start": "2019-01-03",
+      "train_end": "2019-01-02",
+      "train_sharpe_ann": -0.8058320056730433,
+      "train_start": "2007-01-03"
+    },
+    {
+      "params": {
+        "k": 1.5
+      },
+      "test_end": "2020-12-31",
+      "test_sharpe_ann": -1.3853991166131343,
+      "test_start": "2020-01-03",
+      "train_end": "2020-01-02",
+      "train_sharpe_ann": -0.8815542744095672,
+      "train_start": "2007-01-03"
+    },
+    {
+      "params": {
+        "k": 1.5
+      },
+      "test_end": "2021-12-31",
+      "test_sharpe_ann": -2.089489514004459,
+      "test_start": "2021-01-04",
+      "train_end": "2020-12-31",
+      "train_sharpe_ann": -0.9246184903446037,
+      "train_start": "2007-01-03"
+    },
+    {
+      "params": {
+        "k": 1.5
+      },
+      "test_end": "2022-12-30",
+      "test_sharpe_ann": -1.2156408360567774,
+      "test_start": "2022-01-03",
+      "train_end": "2021-12-31",
+      "train_sharpe_ann": -1.0109438684996133,
+      "train_start": "2007-01-03"
+    },
+    {
+      "params": {
+        "k": 1.5
+      },
+      "test_end": "2023-12-29",
+      "test_sharpe_ann": -1.0806581284055272,
+      "test_start": "2023-01-03",
+      "train_end": "2022-12-30",
+      "train_sharpe_ann": -1.0232621938126552,
+      "train_start": "2007-01-03"
+    }
+  ],
+  "gates": [
+    {
+      "name": "oos_length_years",
+      "passed": true,
+      "threshold": 5.0,
+      "value": 11.976190476190476
+    },
+    {
+      "name": "oos_sharpe",
+      "passed": false,
+      "threshold": 0.4,
+      "value": -1.283710906715496
+    },
+    {
+      "name": "deflated_sharpe_ratio",
+      "passed": false,
+      "threshold": 0.95,
+      "value": 6.678774049899193e-21
+    },
+    {
+      "name": "oos_max_drawdown",
+      "passed": true,
+      "threshold": -0.35,
+      "value": -0.12071989352898638
+    },
+    {
+      "name": "cost_stress_sharpe",
+      "passed": false,
+      "threshold": 0.0,
+      "value": -1.9524414462444935
+    },
+    {
+      "name": "psr_vs_benchmark",
+      "passed": false,
+      "threshold": 0.95,
+      "value": 5.411383507921677e-16
+    }
+  ],
+  "is_synthetic": false,
+  "kind": "daytrade",
+  "last_5y": {
+    "benchmark": {
+      "ann_vol": 0.11900743424721347,
+      "avg_gross_exposure": 1.0,
+      "avg_win_over_avg_loss": 0.9403122530040213,
+      "cagr": 0.0763459594749234,
+      "calmar": 0.37324454230138515,
+      "daily_win_rate": 0.5468253968253968,
+      "kurtosis": 15.266268271491315,
+      "max_drawdown": -0.2045467537292911,
+      "monthly_win_rate": 0.6065573770491803,
+      "n_obs": 1260,
+      "sharpe": 0.678065235783009,
+      "skew": -1.0082273572317295,
+      "sortino": 0.9279885218286592,
+      "total_return": 0.4446392966201631
+    },
+    "strategy": {
+      "ann_vol": 0.009661945020844071,
+      "avg_gross_exposure": 0.019345238095238096,
+      "avg_win_over_avg_loss": 0.7048888068538157,
+      "cagr": -0.01399783320164072,
+      "calmar": -0.20495293796497113,
+      "daily_win_rate": 0.34108527131782945,
+      "kurtosis": 125.11850103572554,
+      "max_drawdown": -0.06829779236457256,
+      "monthly_win_rate": 0.3148148148148148,
+      "n_obs": 1260,
+      "sharpe": -1.454110953702607,
+      "skew": -7.887478073768059,
+      "sortino": -1.5892834795191575,
+      "total_return": -0.06805700850228591
+    },
+    "years": 5.0
+  },
+  "n_trials_this_strategy": 3,
+  "n_trials_total": 10,
+  "oos_metrics": {
+    "ann_vol": 0.008248461914570791,
+    "annual_cost_drag": 0.006685139165009941,
+    "annual_turnover": 8.91351888667992,
+    "avg_gross_exposure": 0.017685553346587144,
+    "avg_win_over_avg_loss": 0.6952712528274198,
+    "cagr": -0.010566739307787398,
+    "calmar": -0.08753105224740933,
+    "daily_win_rate": 0.36678200692041524,
+    "kurtosis": 143.6140571133741,
+    "max_drawdown": -0.12071989352898638,
+    "monthly_win_rate": 0.336,
+    "n_obs": 3018,
+    "sharpe": -1.283710906715496,
+    "skew": -7.633477949072805,
+    "sortino": -1.433258248264374,
+    "total_return": -0.11946238942835008
+  },
+  "oos_start": "2012-01-03",
+  "strategy": "gap_fade",
+  "stress_metrics": {
+    "ann_vol": 0.008847271564326723,
+    "avg_win_over_avg_loss": 0.6228947294308029,
+    "cagr": -0.017164606816649663,
+    "calmar": -0.09134353509661906,
+    "daily_win_rate": 0.2698961937716263,
+    "kurtosis": 139.25732359372188,
+    "max_drawdown": -0.18791266178272736,
+    "monthly_win_rate": 0.208,
+    "n_obs": 3018,
+    "sharpe": -1.9524414462444935,
+    "skew": -8.54922854821973,
+    "sortino": -2.0664773636042044,
+    "total_return": -0.18726590341457583
+  },
+  "trade_stats": {
+    "gross_edge_bps": -8.75860904762368,
+    "n_trades": 427,
+    "net_edge_bps": -23.75860904762368,
+    "pct_days_in_market": 0.09575878064943671,
+    "round_trip_cost_bps": 15.0,
+    "trades_per_year": 35.65407554671968,
+    "win_rate": 0.007952286282306162
+  },
+  "verdict": "REJECT"
+}

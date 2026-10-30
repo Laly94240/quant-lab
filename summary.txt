@@ -1,0 +1,24 @@
+data: csv | 2007-01-03 -> 2023-12-29 | 8 assets | hash e9dcd99bca1339f0
+hypotheses tested so far under this research_id: 10
+
+Average annual return by part of the day (arithmetic):
+asset     session    night    total
+SPY          3.8%     7.2%    11.1%
+EFA          7.2%    -1.7%     5.6%
+EEM          2.7%     3.3%     6.5%
+IEF          2.3%     1.2%     3.5%
+TLT          3.9%     0.9%     4.8%
+GLD          0.3%     7.7%     8.1%
+DBC         -2.3%     4.4%     2.2%
+VNQ         -3.4%    12.9%     9.8%
+
+strategy        Sharpe    CAGR   MaxDD  inMkt  tr/yr  edge bp  cost bp   DSR  verdict
+-------------------------------------------------------------------------------------
+intraday_trend   -5.33  -19.6%  -92.7%  97.5%   1200     0.54     15.0  0.00  REJECT  (failed: oos_sharpe, deflated_sharpe_ratio, oos_max_drawdown, cost_stress_sharpe, psr_vs_benchmark)
+gap_fade         -1.28   -1.1%  -12.1%   9.6%     36    -8.76     15.0  0.00  REJECT  (failed: oos_sharpe, deflated_sharpe_ratio, cost_stress_sharpe, psr_vs_benchmark)
+ibs_reversal     -1.73   -2.4%  -25.3%  29.5%    117    -1.55     15.0  0.00  REJECT  (failed: oos_sharpe, deflated_sharpe_ratio, cost_stress_sharpe, psr_vs_benchmark)
+benchmark         0.53    4.9%  -20.5%
+
+edge bp = average GROSS return per trade; cost bp = round-trip cost. A strategy needs edge > cost.
+PASS_TO_PAPER = eligible for paper trading only; never a profitability claim.
+report written to report/daytrade.html and report/daytrade.json
