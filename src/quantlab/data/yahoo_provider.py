@@ -21,7 +21,7 @@ class YahooProvider(DataProvider):
     def __init__(self, cache_dir: str | Path | None = None):
         self.cache_dir = Path(cache_dir) if cache_dir else None
 
-    def get_prices(self, tickers: Sequence[str], start=None, end=None) -> pd.DataFrame:
+    def _download(self, tickers: Sequence[str], start, end) -> dict[str, pd.DataFrame]:
         try:
             import yfinance as yf
         except ImportError as exc:
@@ -31,15 +31,34 @@ class YahooProvider(DataProvider):
         raw = yf.download(
             tickers, start=start, end=end, auto_adjust=True, progress=False, group_by="column"
         )
-        close = raw["Close"]
-        if isinstance(close, pd.Series):
-            close = close.to_frame(tickers[0])
-        close = close[tickers].astype(float)
-        close.index = pd.to_datetime(close.index).tz_localize(None)
-        close = close.sort_index()
+        fields: dict[str, pd.DataFrame] = {}
+        for name in ("Open", "High", "Low", "Close", "Volume"):
+            try:
+                frame = raw[name]
+            except KeyError:
+                continue
+            if isinstance(frame, pd.Series):
+                frame = frame.to_frame(tickers[0])
+            frame = frame[tickers].astype(float)
+            frame.index = pd.to_datetime(frame.index).tz_localize(None)
+            fields[name.lower()] = frame.sort_index()
+        if "close" not in fields:
+            raise ValueError("Yahoo response has no Close column")
         if self.cache_dir is not None:
             self.cache_dir.mkdir(parents=True, exist_ok=True)
             for t in tickers:
-                out = close[t].dropna().rename("Adj Close").rename_axis("Date")
-                out.to_csv(self.cache_dir / f"{t}.csv")
-        return close
+                snap = pd.DataFrame({f.capitalize(): fields[f][t] for f in fields})
+                snap["Adj Close"] = snap["Close"]            # auto_adjust=True: Close is already adjusted
+                snap = snap.dropna(subset=["Close"]).rename_axis("Date")
+                snap.to_csv(self.cache_dir / f"{t}.csv")
+        return fields
+
+    def get_prices(self, tickers: Sequence[str], start=None, end=None) -> pd.DataFrame:
+        return self._download(tickers, start, end)["close"]
+
+    def get_ohlc(self, tickers: Sequence[str], start=None, end=None) -> dict[str, pd.DataFrame]:
+        fields = self._download(tickers, start, end)
+        missing = [f for f in ("open", "high", "low", "close") if f not in fields]
+        if missing:
+            raise ValueError(f"Yahoo response lacks {missing}")
+        return {f: fields[f] for f in ("open", "high", "low", "close")}

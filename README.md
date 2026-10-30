@@ -63,6 +63,11 @@ périmées, perte journalière ou drawdown excessifs : aucun ordre, alerte Disco
 
 Voir `docs/NEWS_AGENT.md` : défenses contre l'injection de prompt, coût de l'API X, surcouche « réduction seule » (désactivée).
 
+## Day trading sur barres journalières
+
+`quantlab daytrade --config configs/etf_daytrade.yaml` teste trois hypothèses où l'on achète à l'ouverture et vend à la clôture, sans position la nuit
+(walk-forward, critères, rapport HTML avec séance contre nuit, edge contre coût). Voir `docs/DAYTRADE.md`. Pas d'ordres stop ni de logique intra-séance : il faut des données à la minute.
+
 ## Publier sur GitHub
 
 ```bash
