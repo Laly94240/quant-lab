@@ -10,3 +10,5 @@ data/raw/*
 runs/*
 !runs/.gitkeep
 !runs/index.jsonl
+!runs/trial_registry.jsonl
+!runs/lockbox_used.json

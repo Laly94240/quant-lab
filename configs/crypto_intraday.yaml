@@ -1,0 +1,36 @@
+# Intraday research on Binance USD-M perpetual futures. Protocol and hypotheses: docs/CRYPTO_INTRADAY.md
+research_id: crypto_intraday_v1
+symbols: [BTCUSDT, ETHUSDT]
+bar_minutes: 15
+data:
+  start: "2020-01"            # first month of 1-minute files (public archives, no key)
+  cache: data/raw/binance
+
+# Three blocks, never mixed. The lockbox is the most recent period (from validation_end + 1 day to the latest data).
+blocks:
+  dev_end: "2023-12-31"
+  validation_end: "2025-10-31"
+  lockbox_end: null           # null = latest available day
+
+# Per side, in basis points of notional. Assumptions to check against your fee tier.
+costs: {fee_bps: 5.0, slippage_bps: 1.0}
+
+# Same gates in every block. The win rate is a gate, never the objective.
+gates:
+  min_trades_per_year: 100   # scaled to the length of each block
+  min_win_rate: 0.51
+  min_expectancy_bps: 0.0
+  min_profit_factor: 1.10
+  min_dsr: 0.95
+  max_drawdown: 0.30
+  min_stress_expectancy_bps: 0.0
+finalists: 3
+
+# Hypotheses written BEFORE any test (23 parameter sets per symbol).
+strategies:
+  - name: open_momentum       # M1: the first x hours of the UTC day continue until the end of the day
+    grid: {x_hours: [2, 4, 6, 8], min_z: [0.0, 0.5]}
+  - name: hour_reversal       # M2: fade a hourly move beyond k standard deviations for n hours
+    grid: {k: [2.0, 3.0], n_hours: [1, 2, 4]}
+  - name: range_breakout      # M3: follow a break of the previous n-hour range for h hours
+    grid: {n_hours: [6, 12, 24], h_hours: [1, 2, 4]}

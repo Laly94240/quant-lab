@@ -34,3 +34,5 @@ select = ["E", "F", "I", "B"]
 "src/quantlab/report.py" = ["E501"]   # HTML templates
 "src/quantlab/crypto_report.py" = ["E501", "B007"]   # HTML/SVG templates
 "src/quantlab/daytrade_report.py" = ["E501"]   # HTML templates
+"src/quantlab/crypto_intraday.py" = ["E501"]
+"src/quantlab/crypto_intraday_report.py" = ["E501"]
