@@ -16,3 +16,13 @@
 - 10 essais au total. Coûts : 5,5 pb par côté + 2 pb à l'ouverture/clôture, soit 15 pb l'aller-retour. Critères (gates) identiques à l'étude journalière.
 - Choix de méthode fixé avant les résultats réels : variance des Sharpe estimée par famille (moyenne), pas sur tous les essais mélangés. Contrôle sur données synthétiques : 0 faux positif sur 40 marchés aléatoires, détection d'un effet de gap planté 15 fois sur 15.
 - Résultat réel : aucun à ce jour.
+
+
+## 2026-10-30 - Intraday futures crypto : protocole et hypothèses (enregistrés avant tout test)
+- Question (research_id crypto_intraday_v1) : des règles intraday sur futures perpétuels Binance (BTCUSDT, ETHUSDT, barres de 15 minutes) ont-elles un gain net par trade positif, avec au moins 51 % de trades gagnants, validé hors échantillon ?
+- Blocs : développement 2020-01 → 2023-12-31 ; validation 2024-01-01 → 2025-10-31 ; dernière année (lockbox) 2025-11-01 → dernière donnée, utilisée une seule fois pour le gagnant.
+- Demande initiale : itérer jusqu'à la meilleure stratégie d'après le test de la dernière année. Écartée : un test qui sert à choisir n'est plus un test. Remplacée par une validation intermédiaire.
+- M1 open_momentum (x = 2, 4, 6, 8 h ; z = 0, 0,5), M2 hour_reversal (k = 2, 3 ; n = 1, 2, 4 h), M3 range_breakout (n = 6, 12, 24 h ; h = 1, 2, 4 h) : 23 jeux par symbole, 46 au total.
+- Critères : 100 trades par an de bloc, trades gagnants ≥ 51 %, gain net > 0, facteur de profit ≥ 1,10, Sharpe déflaté ≥ 0,95, baisse maximale ≤ 30 %, gain net > 0 avec coûts doublés. Coûts : 5 pb de frais et 1 pb de glissement par côté.
+- Choix de méthode fixé avant les résultats réels : variance du Sharpe sous hypothèse nulle prise égale à 1 / (nombre de jours du bloc), pas la dispersion observée entre jeux de paramètres. Contrôle synthétique : 0 faux gagnant sur 12 marchés aléatoires, effet planté passé 6 fois sur 6.
+- Résultat réel : aucun à ce jour.

@@ -1,0 +1,72 @@
+name: crypto-intraday
+# Manual run: downloads PUBLIC Binance USD-M 1-minute files (data.binance.vision, no key, no account) and runs the
+# 3-block protocol. The last year (lockbox) only opens with through=lockbox AND confirm=OPEN_LOCKBOX_ONCE.
+# Simulated research only: no orders, no secrets.
+on:
+  workflow_dispatch:
+    inputs:
+      through:
+        description: "dev, validate, or lockbox"
+        default: "validate"
+      confirm:
+        description: "Type OPEN_LOCKBOX_ONCE to look at the last year (once only)"
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/cache@v4
+        with:
+          path: data/raw/binance
+          key: binance-1m-${{ github.run_id }}
+          restore-keys: binance-1m-
+      - run: pip install -e .
+      - name: Guard
+        env:
+          THROUGH: ${{ inputs.through }}
+          CONFIRM: ${{ inputs.confirm }}
+        run: |
+          case "$THROUGH" in dev|validate|lockbox) ;; *) echo "through must be dev, validate or lockbox"; exit 1;; esac
+          if [ "$THROUGH" = "lockbox" ] && [ "$CONFIRM" != "OPEN_LOCKBOX_ONCE" ]; then
+            echo "Refused: the last year opens only once. Type OPEN_LOCKBOX_ONCE in 'confirm'."; exit 1
+          fi
+      - name: Protocol
+        env:
+          THROUGH: ${{ inputs.through }}
+        run: |
+          quantlab crypto-intraday --config configs/crypto_intraday.yaml --through "$THROUGH" --state-dir runs | tee summary.txt
+      - name: Show the summary on the run page
+        run: |
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          cat summary.txt >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: crypto-intraday-output
+          path: |
+            report/
+            runs/trial_registry.jsonl
+            runs/lockbox_used.json
+            summary.txt
+          if-no-files-found: ignore
+      - name: Publish to branch reports-crypto-intraday
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir /tmp/out && cp report/crypto_intraday.html report/crypto_intraday.json summary.txt /tmp/out/
+          cp runs/trial_registry.jsonl runs/lockbox_used.json /tmp/out/ 2>/dev/null || true
+          git checkout --orphan reports-crypto-intraday
+          git rm -rf --quiet . || true
+          cp /tmp/out/* .
+          git add -A
+          git commit -m "Crypto intraday protocol output"
+          git push -f origin reports-crypto-intraday

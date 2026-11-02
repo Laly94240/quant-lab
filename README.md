@@ -68,6 +68,11 @@ Voir `docs/NEWS_AGENT.md` : défenses contre l'injection de prompt, coût de l'A
 `quantlab daytrade --config configs/etf_daytrade.yaml` teste trois hypothèses où l'on achète à l'ouverture et vend à la clôture, sans position la nuit
 (walk-forward, critères, rapport HTML avec séance contre nuit, edge contre coût). Voir `docs/DAYTRADE.md`. Pas d'ordres stop ni de logique intra-séance : il faut des données à la minute.
 
+## Intraday sur futures crypto
+
+`quantlab crypto-intraday` cherche une stratégie sur futures perpétuels Binance avec un protocole en trois blocs (développement, validation, dernière année ouverte une seule fois),
+un compteur d'essais et des critères dont un taux de trades gagnants minimal. Voir `docs/CRYPTO_INTRADAY.md`.
+
 ## Publier sur GitHub
 
 ```bash

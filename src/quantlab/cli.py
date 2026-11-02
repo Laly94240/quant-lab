@@ -8,6 +8,7 @@
   quantlab notify-test                              send a test message to the Discord webhook
   quantlab binance-report --symbols BTCUSDT ETHUSDT  replay the trend rule on Binance USD-M futures
   quantlab daytrade    --config CFG                 day trading on daily bars (open -> close): walk-forward + report
+  quantlab crypto-intraday --config CFG             Binance futures intraday research: dev / validation / lockbox
 """
 from __future__ import annotations
 
@@ -112,6 +113,40 @@ def _cmd_daytrade(cfg: dict, args) -> int:
     return 0
 
 
+def _cmd_crypto_intraday(args) -> int:
+    from .crypto_intraday import generate_synthetic_bars, run_protocol, to_bars
+    from .crypto_intraday_report import render_crypto_intraday_html, results_json
+    from .data import BinanceVisionProvider
+    from .data.binance_vision import check_symbol
+
+    cfg = _load(args.config)
+    symbols = [check_symbol(s) for s in (args.symbols or cfg["symbols"])]
+    minutes = cfg.get("bar_minutes", 15)
+    results = []
+    for i, sym in enumerate(symbols):
+        if args.synthetic:
+            bars = generate_synthetic_bars(n_days=365 * 7, seed=args.seed + i, scenario=args.scenario, minutes=minutes)
+        else:
+            prov = BinanceVisionProvider(interval="1m", cache_dir=cfg["data"].get("cache", "data/raw/binance"))
+            bars = to_bars(prov.get_ohlcv(sym, cfg["data"]["start"]), minutes)
+            for w in prov.warnings:
+                print(f"[warning] {w}")
+        res = run_protocol(bars, cfg, sym, through=args.through, state_dir=args.state_dir,
+                           allow_burned=args.allow_burned, all_symbols=symbols)
+        results.append(res)
+        print(f"{sym}: {res['status']}  (trials counted: {res['n_trials']})")
+        if res["winner"]:
+            print(f"  winner: {res['winner']}")
+        if res["lockbox"]:
+            print(f"  lockbox: passed={res['lockbox']['passed']} failed={res['lockbox']['failed']}")
+    html = render_crypto_intraday_html(results, cfg, args.synthetic)
+    for path, text in ((args.out, html), (args.json, results_json(results))):
+        Path(path).parent.mkdir(parents=True, exist_ok=True)
+        Path(path).write_text(text, encoding="utf-8")
+    print(f"report written to {args.out} and {args.json}")
+    return 0
+
+
 def _cmd_binance_report(args) -> int:
     from .backtest import CostModel
     from .crypto_report import build_report, render_html, summary_json
@@ -202,6 +237,19 @@ def main(argv: list[str] | None = None) -> int:
     dt.add_argument("--json", default="report/daytrade.json")
     dt.add_argument("--force", action="store_true")
 
+    ci = sub.add_parser("crypto-intraday", help="intraday research on Binance futures with a 3-block protocol")
+    ci.add_argument("--config", required=True)
+    ci.add_argument("--symbols", nargs="+", default=None)
+    ci.add_argument("--through", choices=["dev", "validate", "lockbox"], default="validate",
+                    help="lockbox = the last year, used ONCE for the single winner")
+    ci.add_argument("--state-dir", default="runs", help="holds trial_registry.jsonl and lockbox_used.json")
+    ci.add_argument("--out", default="report/crypto_intraday.html")
+    ci.add_argument("--json", default="report/crypto_intraday.json")
+    ci.add_argument("--allow-burned", action="store_true", help="look at a used lockbox again (result = exploratory)")
+    ci.add_argument("--synthetic", action="store_true", help="format preview on fake data (no network)")
+    ci.add_argument("--scenario", choices=["random_walk", "open_momentum"], default="random_walk")
+    ci.add_argument("--seed", type=int, default=0)
+
     args = ap.parse_args(argv)
 
     if args.cmd == "notify-test":
@@ -210,6 +258,9 @@ def main(argv: list[str] | None = None) -> int:
                            "Aucun ordre n'a été passé.", level="success")
         print("message sent" if ok else "NOT sent: DISCORD_WEBHOOK_URL missing or rejected by Discord")
         return 0 if ok else 1
+
+    if args.cmd == "crypto-intraday":
+        return _cmd_crypto_intraday(args)
 
     if args.cmd == "report":
         from .report import write_report
