@@ -1,0 +1,3 @@
+BTCUSDT: no_candidate_in_development  (trials counted: 52)
+ETHUSDT: no_candidate_in_development  (trials counted: 52)
+report written to report/crypto_intraday.html and report/crypto_intraday.json

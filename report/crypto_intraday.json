@@ -1,0 +1,3444 @@
+[
+  {
+    "symbol": "BTCUSDT",
+    "blocks": {
+      "dev": [
+        "2020-01-01",
+        "2023-12-31"
+      ],
+      "validation": [
+        "2024-01-01",
+        "2025-10-31"
+      ],
+      "lockbox": [
+        "2025-11-01",
+        "2026-11-01"
+      ]
+    },
+    "n_trials": 52,
+    "dev": [
+      {
+        "strategy": "open_momentum",
+        "params": {
+          "min_z": 0.0,
+          "x_hours": 2
+        },
+        "stats": {
+          "n_trades": 1441,
+          "n_days": 1461,
+          "win_rate": 0.4462179042331714,
+          "expectancy_bps": -17.751108109597062,
+          "gross_expectancy_bps": -5.751108109597047,
+          "profit_factor": 0.8557817008131908,
+          "avg_win_bps": 236.05929357103616,
+          "avg_loss_bps": -222.26249693246314,
+          "sharpe": -0.953718317351677,
+          "total_return": -0.9690834412966397,
+          "max_drawdown": -0.9843664499605912,
+          "time_in_market": 0.9041181838923112
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 1441,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.4462179042331714,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -17.751108109597062,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.8557817008131908,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 1.4816131170482259e-05,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.9843664499605912,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -29.751108109597048,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "open_momentum",
+        "params": {
+          "min_z": 0.5,
+          "x_hours": 2
+        },
+        "stats": {
+          "n_trades": 718,
+          "n_days": 1461,
+          "win_rate": 0.45125348189415043,
+          "expectancy_bps": -6.663693758070895,
+          "gross_expectancy_bps": 5.336306241929119,
+          "profit_factor": 0.9475569696767827,
+          "avg_win_bps": 266.81609015236177,
+          "avg_loss_bps": -231.55569880116784,
+          "sharpe": -0.23030142753182725,
+          "total_return": -0.642022334736687,
+          "max_drawdown": -0.8470613881021058,
+          "time_in_market": 0.45049053159936114
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 718,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.45125348189415043,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -6.663693758070895,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.9475569696767827,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 0.0030335746400193073,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.8470613881021058,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -18.66369375807088,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "open_momentum",
+        "params": {
+          "min_z": 0.0,
+          "x_hours": 4
+        },
+        "stats": {
+          "n_trades": 1440,
+          "n_days": 1461,
+          "win_rate": 0.4701388888888889,
+          "expectancy_bps": -5.547890167503412,
+          "gross_expectancy_bps": 6.452109832496599,
+          "profit_factor": 0.9495153152886565,
+          "avg_win_bps": 221.94430407867188,
+          "avg_loss_bps": -207.3987623885528,
+          "sharpe": -0.3219928398905839,
+          "total_return": -0.7901374572051802,
+          "max_drawdown": -0.9224035949341701,
+          "time_in_market": 0.8213552361396304
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 1440,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.4701388888888889,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -5.547890167503412,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.9495153152886565,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 0.0017930426379123218,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.9224035949341701,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -17.547890167503404,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "open_momentum",
+        "params": {
+          "min_z": 0.5,
+          "x_hours": 4
+        },
+        "stats": {
+          "n_trades": 663,
+          "n_days": 1461,
+          "win_rate": 0.46153846153846156,
+          "expectancy_bps": 1.8818873193419188,
+          "gross_expectancy_bps": 13.881887319341931,
+          "profit_factor": 1.0150086411171308,
+          "avg_win_bps": 275.7490877626009,
+          "avg_loss_bps": -232.8614273463086,
+          "sharpe": 0.06290178749412759,
+          "total_return": -0.3017614903082887,
+          "max_drawdown": -0.805225510855789,
+          "time_in_market": 0.3781656399726215
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 663,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.46153846153846156,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": 1.8818873193419188,
+            "threshold": 0.0,
+            "passed": true
+          },
+          {
+            "name": "profit_factor",
+            "value": 1.0150086411171308,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 0.01499969108409463,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.805225510855789,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -10.118112680658081,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "open_momentum",
+        "params": {
+          "min_z": 0.0,
+          "x_hours": 6
+        },
+        "stats": {
+          "n_trades": 1440,
+          "n_days": 1461,
+          "win_rate": 0.4479166666666667,
+          "expectancy_bps": -12.050380188138641,
+          "gross_expectancy_bps": -0.05038018813862846,
+          "profit_factor": 0.8897169595852465,
+          "avg_win_bps": 217.04344037650188,
+          "avg_loss_bps": -197.91895158963948,
+          "sharpe": -0.7204661581004693,
+          "total_return": -0.9138997463926669,
+          "max_drawdown": -0.9694126175089293,
+          "time_in_market": 0.7392197125256673
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 1440,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.4479166666666667,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -12.050380188138641,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.8897169595852465,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 0.00013258650138883146,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.9694126175089293,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -24.05038018813863,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "open_momentum",
+        "params": {
+          "min_z": 0.5,
+          "x_hours": 6
+        },
+        "stats": {
+          "n_trades": 675,
+          "n_days": 1461,
+          "win_rate": 0.45925925925925926,
+          "expectancy_bps": 10.32936907125755,
+          "gross_expectancy_bps": 22.32936907125756,
+          "profit_factor": 1.092319235891849,
+          "avg_win_bps": 266.1173895391289,
+          "avg_loss_bps": -206.91525105214004,
+          "sharpe": 0.3805094187799832,
+          "total_return": 0.34052841465313044,
+          "max_drawdown": -0.6668705715754701,
+          "time_in_market": 0.34650924024640656
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 675,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.45925925925925926,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": 10.32936907125755,
+            "threshold": 0.0,
+            "passed": true
+          },
+          {
+            "name": "profit_factor",
+            "value": 1.092319235891849,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 0.05797567825627509,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.6668705715754701,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -1.6706309287424357,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "open_momentum",
+        "params": {
+          "min_z": 0.0,
+          "x_hours": 8
+        },
+        "stats": {
+          "n_trades": 1441,
+          "n_days": 1461,
+          "win_rate": 0.4739764052741152,
+          "expectancy_bps": -1.74178537443617,
+          "gross_expectancy_bps": 10.25821462556384,
+          "profit_factor": 0.9824413556073939,
+          "avg_win_bps": 205.614419986843,
+          "avg_loss_bps": -188.58121579891332,
+          "sharpe": -0.11014193844992952,
+          "total_return": -0.5877451470021082,
+          "max_drawdown": -0.8953897337114763,
+          "time_in_market": 0.6575404973762263
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 1441,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.4739764052741152,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -1.74178537443617,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.9824413556073939,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 0.006200469935591603,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.8953897337114763,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -13.74178537443616,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "open_momentum",
+        "params": {
+          "min_z": 0.5,
+          "x_hours": 8
+        },
+        "stats": {
+          "n_trades": 684,
+          "n_days": 1461,
+          "win_rate": 0.489766081871345,
+          "expectancy_bps": 12.872388824875175,
+          "gross_expectancy_bps": 24.87238882487518,
+          "profit_factor": 1.1227032616490022,
+          "avg_win_bps": 240.48019840306793,
+          "avg_loss_bps": -205.6050215152239,
+          "sharpe": 0.5027165201592377,
+          "total_return": 0.6662605166053799,
+          "max_drawdown": -0.5983155687107005,
+          "time_in_market": 0.31211498973305957
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 684,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.489766081871345,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": 12.872388824875175,
+            "threshold": 0.0,
+            "passed": true
+          },
+          {
+            "name": "profit_factor",
+            "value": 1.1227032616490022,
+            "threshold": 1.1,
+            "passed": true
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 0.09167515523563213,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.5983155687107005,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": 0.8723888248751797,
+            "threshold": 0.0,
+            "passed": true
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "deflated_sharpe_ratio",
+          "max_drawdown"
+        ]
+      },
+      {
+        "strategy": "hour_reversal",
+        "params": {
+          "k": 2.0,
+          "n_hours": 1
+        },
+        "stats": {
+          "n_trades": 3054,
+          "n_days": 1461,
+          "win_rate": 0.46954813359528486,
+          "expectancy_bps": -11.230000297620531,
+          "gross_expectancy_bps": 0.769999702379468,
+          "profit_factor": 0.7368326202682015,
+          "avg_win_bps": 66.96323665439013,
+          "avg_loss_bps": -80.44549522921517,
+          "sharpe": -2.795201267795254,
+          "total_return": -0.9735255699390418,
+          "max_drawdown": -0.9742640439512148,
+          "time_in_market": 0.08709787816563998
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 3054,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.46954813359528486,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -11.230000297620531,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.7368326202682015,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 4.335945026009491e-18,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.9742640439512148,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -23.230000297620528,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "hour_reversal",
+        "params": {
+          "k": 2.0,
+          "n_hours": 2
+        },
+        "stats": {
+          "n_trades": 2571,
+          "n_days": 1461,
+          "win_rate": 0.4838584208479191,
+          "expectancy_bps": -11.821943797967139,
+          "gross_expectancy_bps": 0.17805620203285957,
+          "profit_factor": 0.777890834901564,
+          "avg_win_bps": 85.57024229314071,
+          "avg_loss_bps": -103.12253121118357,
+          "sharpe": -1.98494508694959,
+          "total_return": -0.9649180739718694,
+          "max_drawdown": -0.9657066763582804,
+          "time_in_market": 0.1466461327857632
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 2571,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.4838584208479191,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -11.821943797967139,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.777890834901564,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 1.2376314349579834e-10,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.9657066763582804,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -23.821943797967133,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "hour_reversal",
+        "params": {
+          "k": 2.0,
+          "n_hours": 4
+        },
+        "stats": {
+          "n_trades": 2074,
+          "n_days": 1461,
+          "win_rate": 0.49083895853423337,
+          "expectancy_bps": -12.842707547343121,
+          "gross_expectancy_bps": -0.842707547343114,
+          "profit_factor": 0.8163565673700733,
+          "avg_win_bps": 116.31133914230372,
+          "avg_loss_bps": -137.34916543565802,
+          "sharpe": -1.580845702738263,
+          "total_return": -0.9517528322152851,
+          "max_drawdown": -0.953189198767019,
+          "time_in_market": 0.23659593885466576
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 2074,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.49083895853423337,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -12.842707547343121,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.8163565673700733,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 2.2594650272225877e-08,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.953189198767019,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -24.84270754734311,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "hour_reversal",
+        "params": {
+          "k": 3.0,
+          "n_hours": 1
+        },
+        "stats": {
+          "n_trades": 1240,
+          "n_days": 1461,
+          "win_rate": 0.45241935483870965,
+          "expectancy_bps": -14.474006275064772,
+          "gross_expectancy_bps": -2.474006275064773,
+          "profit_factor": 0.7223289692350798,
+          "avg_win_bps": 83.22466213762651,
+          "avg_loss_bps": -95.19411375594814,
+          "sharpe": -1.7686809083921604,
+          "total_return": -0.8543014961033386,
+          "max_drawdown": -0.868630138311635,
+          "time_in_market": 0.03536390600045631
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 1240,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.45241935483870965,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -14.474006275064772,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.7223289692350798,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 3.858293170029675e-09,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.868630138311635,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -26.47400627506477,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "hour_reversal",
+        "params": {
+          "k": 3.0,
+          "n_hours": 2
+        },
+        "stats": {
+          "n_trades": 1095,
+          "n_days": 1461,
+          "win_rate": 0.4602739726027397,
+          "expectancy_bps": -19.30611468702565,
+          "gross_expectancy_bps": -7.306114687025653,
+          "profit_factor": 0.7099102036693166,
+          "avg_win_bps": 102.64774894817887,
+          "avg_loss_bps": -123.30737910689552,
+          "sharpe": -1.7884744555328775,
+          "total_return": -0.898984178508818,
+          "max_drawdown": -0.9013262714913389,
+          "time_in_market": 0.06245722108145106
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 1095,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.4602739726027397,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -19.30611468702565,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.7099102036693166,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 2.015523995542254e-09,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.9013262714913389,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -31.30611468702565,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "hour_reversal",
+        "params": {
+          "k": 3.0,
+          "n_hours": 4
+        },
+        "stats": {
+          "n_trades": 967,
+          "n_days": 1461,
+          "win_rate": 0.4767321613236815,
+          "expectancy_bps": -20.545254295995587,
+          "gross_expectancy_bps": -8.54525429599558,
+          "profit_factor": 0.7461904404572005,
+          "avg_win_bps": 126.70063026003685,
+          "avg_loss_bps": -154.69614911878404,
+          "sharpe": -1.5875606093044807,
+          "total_return": -0.8878059953423082,
+          "max_drawdown": -0.897848905269536,
+          "time_in_market": 0.11031257129819758
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 967,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.4767321613236815,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -20.545254295995587,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.7461904404572005,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 9.320592972809884e-09,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.897848905269536,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -32.54525429599559,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "range_breakout",
+        "params": {
+          "h_hours": 1,
+          "n_hours": 6
+        },
+        "stats": {
+          "n_trades": 5899,
+          "n_days": 1461,
+          "win_rate": 0.3200542464824547,
+          "expectancy_bps": -15.475608425574071,
+          "gross_expectancy_bps": -3.4756084255740727,
+          "profit_factor": 0.5900746112410566,
+          "avg_win_bps": 69.60272618554028,
+          "avg_loss_bps": -55.52245353796099,
+          "sharpe": -6.042538038593596,
+          "total_return": -0.9999208670018495,
+          "max_drawdown": -0.9999247241165923,
+          "time_in_market": 0.1682352270134611
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 5899,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.3200542464824547,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -15.475608425574071,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.5900746112410566,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 1.3627234840411978e-28,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.9999247241165923,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -27.475608425574066,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "range_breakout",
+        "params": {
+          "h_hours": 2,
+          "n_hours": 6
+        },
+        "stats": {
+          "n_trades": 5025,
+          "n_days": 1461,
+          "win_rate": 0.343681592039801,
+          "expectancy_bps": -16.449122355699348,
+          "gross_expectancy_bps": -4.44912235569935,
+          "profit_factor": 0.6512683957390106,
+          "avg_win_bps": 89.3830470344975,
+          "avg_loss_bps": -71.86821166342223,
+          "sharpe": -4.831316708584025,
+          "total_return": -0.9998249970414671,
+          "max_drawdown": -0.999836101576064,
+          "time_in_market": 0.28661875427789185
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 5025,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.343681592039801,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -16.449122355699348,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.6512683957390106,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 3.740639263996695e-26,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.999836101576064,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -28.449122355699345,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "range_breakout",
+        "params": {
+          "h_hours": 4,
+          "n_hours": 6
+        },
+        "stats": {
+          "n_trades": 3982,
+          "n_days": 1461,
+          "win_rate": 0.3761928679055751,
+          "expectancy_bps": -16.202764027886882,
+          "gross_expectancy_bps": -4.2027640278868805,
+          "profit_factor": 0.7353461219266374,
+          "avg_win_bps": 119.67187445560077,
+          "avg_loss_bps": -98.14326662380657,
+          "sharpe": -3.2699747587426793,
+          "total_return": -0.9990415537668826,
+          "max_drawdown": -0.9990751887678346,
+          "time_in_market": 0.4542550764316678
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 3982,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.3761928679055751,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -16.202764027886882,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.7353461219266374,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 4.477377465042677e-19,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.9990751887678346,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -28.202764027886875,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "range_breakout",
+        "params": {
+          "h_hours": 1,
+          "n_hours": 12
+        },
+        "stats": {
+          "n_trades": 3678,
+          "n_days": 1461,
+          "win_rate": 0.3450244698205546,
+          "expectancy_bps": -15.591271356499016,
+          "gross_expectancy_bps": -3.591271356499017,
+          "profit_factor": 0.624072541181494,
+          "avg_win_bps": 75.01751233537308,
+          "avg_loss_bps": -63.32167671348769,
+          "sharpe": -4.40576626313825,
+          "total_return": -0.9974174252022989,
+          "max_drawdown": -0.9974564223127654,
+          "time_in_market": 0.10489390828199863
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 3678,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.3450244698205546,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -15.591271356499016,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.624072541181494,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 5.383682199931283e-23,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.9974564223127654,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -27.591271356499014,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "range_breakout",
+        "params": {
+          "h_hours": 2,
+          "n_hours": 12
+        },
+        "stats": {
+          "n_trades": 3194,
+          "n_days": 1461,
+          "win_rate": 0.36192861615529115,
+          "expectancy_bps": -17.33964893091288,
+          "gross_expectancy_bps": -5.33964893091288,
+          "profit_factor": 0.670293767649429,
+          "avg_win_bps": 97.3992029124827,
+          "avg_loss_bps": -82.42213800400678,
+          "sharpe": -3.671666349658582,
+          "total_return": -0.9970526964028292,
+          "max_drawdown": -0.997064535813106,
+          "time_in_market": 0.18218115446041525
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 3194,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.36192861615529115,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -17.33964893091288,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.670293767649429,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 2.403366336470216e-18,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.997064535813106,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -29.33964893091287,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "range_breakout",
+        "params": {
+          "h_hours": 4,
+          "n_hours": 12
+        },
+        "stats": {
+          "n_trades": 2659,
+          "n_days": 1461,
+          "win_rate": 0.3967657013915006,
+          "expectancy_bps": -14.232239255410652,
+          "gross_expectancy_bps": -2.23223925541065,
+          "profit_factor": 0.7800116544069677,
+          "avg_win_bps": 127.18635808446098,
+          "avg_loss_bps": -107.24758850326891,
+          "sharpe": -2.2008062937184176,
+          "total_return": -0.9842401532675453,
+          "max_drawdown": -0.9857999277518595,
+          "time_in_market": 0.3033310517910107
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 2659,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.3967657013915006,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -14.232239255410652,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.7800116544069677,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 2.0378513149008806e-11,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.9857999277518595,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -26.232239255410644,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "range_breakout",
+        "params": {
+          "h_hours": 1,
+          "n_hours": 24
+        },
+        "stats": {
+          "n_trades": 2309,
+          "n_days": 1461,
+          "win_rate": 0.3598960588999567,
+          "expectancy_bps": -15.358822472225476,
+          "gross_expectancy_bps": -3.358822472225478,
+          "profit_factor": 0.6578186674758179,
+          "avg_win_bps": 82.0409555668274,
+          "avg_loss_bps": -70.12148522625318,
+          "sharpe": -3.1581486274146107,
+          "total_return": -0.9754904636781212,
+          "max_drawdown": -0.9760847531245099,
+          "time_in_market": 0.06585101528633357
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 2309,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.3598960588999567,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -15.358822472225476,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.6578186674758179,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 4.611908734930166e-15,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.9760847531245099,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -27.358822472225473,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "range_breakout",
+        "params": {
+          "h_hours": 2,
+          "n_hours": 24
+        },
+        "stats": {
+          "n_trades": 2044,
+          "n_days": 1461,
+          "win_rate": 0.3816046966731898,
+          "expectancy_bps": -16.142852071359243,
+          "gross_expectancy_bps": -4.142852071359241,
+          "profit_factor": 0.7087866096930147,
+          "avg_win_bps": 102.96051819680893,
+          "avg_loss_bps": -89.64018499000734,
+          "sharpe": -2.540386348515221,
+          "total_return": -0.9702055966641081,
+          "max_drawdown": -0.9709557950283728,
+          "time_in_market": 0.11658681268537531
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 2044,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.3816046966731898,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -16.142852071359243,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.7087866096930147,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 1.641215149657884e-11,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.9709557950283728,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -28.142852071359236,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "range_breakout",
+        "params": {
+          "h_hours": 4,
+          "n_hours": 24
+        },
+        "stats": {
+          "n_trades": 1758,
+          "n_days": 1461,
+          "win_rate": 0.40671217292377704,
+          "expectancy_bps": -14.337392590228657,
+          "gross_expectancy_bps": -2.337392590228652,
+          "profit_factor": 0.7892851334443071,
+          "avg_win_bps": 132.04493635997173,
+          "avg_loss_bps": -114.68577724928265,
+          "sharpe": -1.732535349335552,
+          "total_return": -0.9383798787521225,
+          "max_drawdown": -0.9414081025836424,
+          "time_in_market": 0.2005475701574264
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 1758,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.40671217292377704,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -14.337392590228657,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.7892851334443071,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 1.0828847282008079e-08,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.9414081025836424,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -26.337392590228653,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      }
+    ],
+    "finalists": [],
+    "winner": null,
+    "lockbox": null,
+    "status": "no_candidate_in_development",
+    "costs_round_trip_bps": 11.999999999999998
+  },
+  {
+    "symbol": "ETHUSDT",
+    "blocks": {
+      "dev": [
+        "2020-01-01",
+        "2023-12-31"
+      ],
+      "validation": [
+        "2024-01-01",
+        "2025-10-31"
+      ],
+      "lockbox": [
+        "2025-11-01",
+        "2026-11-01"
+      ]
+    },
+    "n_trials": 52,
+    "dev": [
+      {
+        "strategy": "open_momentum",
+        "params": {
+          "min_z": 0.0,
+          "x_hours": 2
+        },
+        "stats": {
+          "n_trades": 1440,
+          "n_days": 1461,
+          "win_rate": 0.4618055555555556,
+          "expectancy_bps": -8.9591350470038,
+          "gross_expectancy_bps": 3.0408649529962117,
+          "profit_factor": 0.9428991943614734,
+          "avg_win_bps": 320.35385814244046,
+          "avg_loss_bps": -291.5309292031075,
+          "sharpe": -0.3744326533239328,
+          "total_return": -0.9379982471470275,
+          "max_drawdown": -0.9688241043419132,
+          "time_in_market": 0.9034907597535934
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 1440,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.4618055555555556,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -8.9591350470038,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.9428991943614734,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 0.0012430318087963672,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.9688241043419132,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -20.9591350470038,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "open_momentum",
+        "params": {
+          "min_z": 0.5,
+          "x_hours": 2
+        },
+        "stats": {
+          "n_trades": 728,
+          "n_days": 1461,
+          "win_rate": 0.46703296703296704,
+          "expectancy_bps": -8.900608299694822,
+          "gross_expectancy_bps": 3.099391700305198,
+          "profit_factor": 0.9473000391068391,
+          "avg_win_bps": 342.57006768146306,
+          "avg_loss_bps": -316.89037591204954,
+          "sharpe": -0.24089047443384953,
+          "total_return": -0.7910541807534692,
+          "max_drawdown": -0.9232879167225241,
+          "time_in_market": 0.4567647729865389
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 728,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.46703296703296704,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -8.900608299694822,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.9473000391068391,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 0.0028451100509232666,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.9232879167225241,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -20.90060829969482,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "open_momentum",
+        "params": {
+          "min_z": 0.0,
+          "x_hours": 4
+        },
+        "stats": {
+          "n_trades": 1441,
+          "n_days": 1461,
+          "win_rate": 0.4739764052741152,
+          "expectancy_bps": -14.921108083645308,
+          "gross_expectancy_bps": -2.92110808364529,
+          "profit_factor": 0.9025369909023561,
+          "avg_win_bps": 291.52080083187946,
+          "avg_loss_bps": -291.04224764737,
+          "sharpe": -0.6651111568060718,
+          "total_return": -0.9681996349118507,
+          "max_drawdown": -0.9884885275575388,
+          "time_in_market": 0.8219256217202829
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 1441,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.4739764052741152,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -14.921108083645308,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.9025369909023561,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 0.00017697476111394256,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.9884885275575388,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -26.921108083645297,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "open_momentum",
+        "params": {
+          "min_z": 0.5,
+          "x_hours": 4
+        },
+        "stats": {
+          "n_trades": 714,
+          "n_days": 1461,
+          "win_rate": 0.4831932773109244,
+          "expectancy_bps": -3.2720284520962557,
+          "gross_expectancy_bps": 8.72797154790376,
+          "profit_factor": 0.9798566816230037,
+          "avg_win_bps": 329.4031360394828,
+          "avg_loss_bps": -314.30978387105216,
+          "sharpe": -0.09336232731744225,
+          "total_return": -0.6306195912520793,
+          "max_drawdown": -0.8998837417360452,
+          "time_in_market": 0.4072553045859001
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 714,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.4831932773109244,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -3.2720284520962557,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.9798566816230037,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 0.006818003840618715,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.8998837417360452,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -15.272028452096253,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "open_momentum",
+        "params": {
+          "min_z": 0.0,
+          "x_hours": 6
+        },
+        "stats": {
+          "n_trades": 1439,
+          "n_days": 1461,
+          "win_rate": 0.467685892981237,
+          "expectancy_bps": -9.373795365044062,
+          "gross_expectancy_bps": 2.6262046349559527,
+          "profit_factor": 0.9349578969156417,
+          "avg_win_bps": 288.11022849017235,
+          "avg_loss_bps": -270.74030718561926,
+          "sharpe": -0.4349772362220399,
+          "total_return": -0.9201338146525566,
+          "max_drawdown": -0.9718393466280141,
+          "time_in_market": 0.7387063655030801
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 1439,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.467685892981237,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -9.373795365044062,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.9349578969156417,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 0.0009069857475412039,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.9718393466280141,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -21.373795365044057,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "open_momentum",
+        "params": {
+          "min_z": 0.5,
+          "x_hours": 6
+        },
+        "stats": {
+          "n_trades": 713,
+          "n_days": 1461,
+          "win_rate": 0.4950911640953717,
+          "expectancy_bps": 16.45099001450425,
+          "gross_expectancy_bps": 28.450990014504264,
+          "profit_factor": 1.1126704473955302,
+          "avg_win_bps": 328.143191497648,
+          "avg_loss_bps": -289.1805297731338,
+          "sharpe": 0.47925290221225375,
+          "total_return": 0.563301498859001,
+          "max_drawdown": -0.793496249746646,
+          "time_in_market": 0.3660164271047228
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 713,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.4950911640953717,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": 16.45099001450425,
+            "threshold": 0.0,
+            "passed": true
+          },
+          {
+            "name": "profit_factor",
+            "value": 1.1126704473955302,
+            "threshold": 1.1,
+            "passed": true
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 0.08668925884667045,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.793496249746646,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": 4.450990014504252,
+            "threshold": 0.0,
+            "passed": true
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "deflated_sharpe_ratio",
+          "max_drawdown"
+        ]
+      },
+      {
+        "strategy": "open_momentum",
+        "params": {
+          "min_z": 0.0,
+          "x_hours": 8
+        },
+        "stats": {
+          "n_trades": 1441,
+          "n_days": 1461,
+          "win_rate": 0.4871616932685635,
+          "expectancy_bps": 7.460992180452991,
+          "gross_expectancy_bps": 19.460992180453008,
+          "profit_factor": 1.0587297377823603,
+          "avg_win_bps": 276.08988986142145,
+          "avg_loss_bps": -247.7182854542423,
+          "sharpe": 0.3716685700355018,
+          "total_return": 0.051105653392096384,
+          "max_drawdown": -0.9090157335101763,
+          "time_in_market": 0.6575404973762263
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 1441,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.4871616932685635,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": 7.460992180452991,
+            "threshold": 0.0,
+            "passed": true
+          },
+          {
+            "name": "profit_factor",
+            "value": 1.0587297377823603,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 0.059221035084611774,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.9090157335101763,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -4.539007819546995,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "open_momentum",
+        "params": {
+          "min_z": 0.5,
+          "x_hours": 8
+        },
+        "stats": {
+          "n_trades": 733,
+          "n_days": 1461,
+          "win_rate": 0.49386084583901774,
+          "expectancy_bps": 19.90156238188215,
+          "gross_expectancy_bps": 31.901562381882165,
+          "profit_factor": 1.1454076187948017,
+          "avg_win_bps": 317.4354908787265,
+          "avg_loss_bps": -270.4145619196209,
+          "sharpe": 0.6264514343311903,
+          "total_return": 1.2242022258812115,
+          "max_drawdown": -0.5782680710201656,
+          "time_in_market": 0.3344741044946384
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 733,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.49386084583901774,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": 19.90156238188215,
+            "threshold": 0.0,
+            "passed": true
+          },
+          {
+            "name": "profit_factor",
+            "value": 1.1454076187948017,
+            "threshold": 1.1,
+            "passed": true
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 0.14353391254378267,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.5782680710201656,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": 7.90156238188215,
+            "threshold": 0.0,
+            "passed": true
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "deflated_sharpe_ratio",
+          "max_drawdown"
+        ]
+      },
+      {
+        "strategy": "hour_reversal",
+        "params": {
+          "k": 2.0,
+          "n_hours": 1
+        },
+        "stats": {
+          "n_trades": 3232,
+          "n_days": 1461,
+          "win_rate": 0.47896039603960394,
+          "expectancy_bps": -11.757540203688063,
+          "gross_expectancy_bps": 0.2424597963119412,
+          "profit_factor": 0.7718347743995502,
+          "avg_win_bps": 83.04084405951298,
+          "avg_loss_bps": -98.89999794682065,
+          "sharpe": -2.7300449942302762,
+          "total_return": -0.9825947531945535,
+          "max_drawdown": -0.9825947531945535,
+          "time_in_market": 0.0921743098334474
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 3232,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.47896039603960394,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -11.757540203688063,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.7718347743995502,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 6.486576440714498e-16,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.9825947531945535,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -23.757540203688055,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "hour_reversal",
+        "params": {
+          "k": 2.0,
+          "n_hours": 2
+        },
+        "stats": {
+          "n_trades": 2718,
+          "n_days": 1461,
+          "win_rate": 0.4900662251655629,
+          "expectancy_bps": -7.827340440456614,
+          "gross_expectancy_bps": 4.172659559543389,
+          "profit_factor": 0.8763152483807745,
+          "avg_win_bps": 113.16279313189759,
+          "avg_loss_bps": -124.10357270479705,
+          "sharpe": -1.1798122835717186,
+          "total_return": -0.9203936427922719,
+          "max_drawdown": -0.9241666557298742,
+          "time_in_market": 0.15503080082135523
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 2718,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.4900662251655629,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -7.827340440456614,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.8763152483807745,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 4.44309462663171e-06,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.9241666557298742,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -19.827340440456606,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "hour_reversal",
+        "params": {
+          "k": 2.0,
+          "n_hours": 4
+        },
+        "stats": {
+          "n_trades": 2216,
+          "n_days": 1461,
+          "win_rate": 0.4927797833935018,
+          "expectancy_bps": -6.918758289123219,
+          "gross_expectancy_bps": 5.081241710876786,
+          "profit_factor": 0.9144162364705654,
+          "avg_win_bps": 150.01262977984769,
+          "avg_loss_bps": -159.3823488329989,
+          "sharpe": -0.7333220257352131,
+          "total_return": -0.8745896951839838,
+          "max_drawdown": -0.9410528416761994,
+          "time_in_market": 0.25279488934519734
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 2216,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.4927797833935018,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -6.918758289123219,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.9144162364705654,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 0.00010879365603085403,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.9410528416761994,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -18.91875828912321,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "hour_reversal",
+        "params": {
+          "k": 3.0,
+          "n_hours": 1
+        },
+        "stats": {
+          "n_trades": 1184,
+          "n_days": 1461,
+          "win_rate": 0.46114864864864863,
+          "expectancy_bps": -10.931268900985197,
+          "gross_expectancy_bps": 1.0687310990148038,
+          "profit_factor": 0.8136492916031725,
+          "avg_win_bps": 103.49892525854094,
+          "avg_loss_bps": -108.86055731963926,
+          "sharpe": -1.2669620106660757,
+          "total_return": -0.759547302210962,
+          "max_drawdown": -0.8093306048603104,
+          "time_in_market": 0.03376682637462925
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 1184,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.46114864864864863,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -10.931268900985197,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.8136492916031725,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 1.5882436790606072e-06,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.8093306048603104,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -22.931268900985195,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "hour_reversal",
+        "params": {
+          "k": 3.0,
+          "n_hours": 2
+        },
+        "stats": {
+          "n_trades": 1067,
+          "n_days": 1461,
+          "win_rate": 0.450796626054358,
+          "expectancy_bps": -16.258389233244696,
+          "gross_expectancy_bps": -4.25838923324469,
+          "profit_factor": 0.7845835782312696,
+          "avg_win_bps": 131.35822332889975,
+          "avg_loss_bps": -137.42492616565337,
+          "sharpe": -1.2280136739884213,
+          "total_return": -0.8626700161101776,
+          "max_drawdown": -0.8776888893809334,
+          "time_in_market": 0.060860141455624
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 1067,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.450796626054358,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -16.258389233244696,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.7845835782312696,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 4.069594936009062e-06,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.8776888893809334,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -28.25838923324469,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "hour_reversal",
+        "params": {
+          "k": 3.0,
+          "n_hours": 4
+        },
+        "stats": {
+          "n_trades": 942,
+          "n_days": 1461,
+          "win_rate": 0.4745222929936306,
+          "expectancy_bps": -15.812496552457729,
+          "gross_expectancy_bps": -3.8124965524577137,
+          "profit_factor": 0.827526913328232,
+          "avg_win_bps": 159.88385634535848,
+          "avg_loss_bps": -174.47162735109177,
+          "sharpe": -1.0264962483127869,
+          "total_return": -0.8265317744354166,
+          "max_drawdown": -0.8396418643992347,
+          "time_in_market": 0.10746064339493498
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 942,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.4745222929936306,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -15.812496552457729,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.827526913328232,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 1.2198043827723947e-05,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.8396418643992347,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -27.812496552457713,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "range_breakout",
+        "params": {
+          "h_hours": 1,
+          "n_hours": 6
+        },
+        "stats": {
+          "n_trades": 6160,
+          "n_days": 1461,
+          "win_rate": 0.36055194805194807,
+          "expectancy_bps": -13.740131798069942,
+          "gross_expectancy_bps": -1.7401317980699462,
+          "profit_factor": 0.6887496246098397,
+          "avg_win_bps": 84.32853264294333,
+          "avg_loss_bps": -69.03602002439403,
+          "sharpe": -4.692106899239438,
+          "total_return": -0.9998658181220542,
+          "max_drawdown": -0.9998669169687415,
+          "time_in_market": 0.1756787588409765
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 6160,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.36055194805194807,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -13.740131798069942,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.6887496246098397,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 1.9529633771652814e-27,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.9998669169687415,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -25.74013179806994,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "range_breakout",
+        "params": {
+          "h_hours": 2,
+          "n_hours": 6
+        },
+        "stats": {
+          "n_trades": 5251,
+          "n_days": 1461,
+          "win_rate": 0.3759283945915064,
+          "expectancy_bps": -15.326675314333272,
+          "gross_expectancy_bps": -3.326675314333274,
+          "profit_factor": 0.7299694364431861,
+          "avg_win_bps": 110.21344590846552,
+          "avg_loss_bps": -90.94956188552794,
+          "sharpe": -3.557117098205208,
+          "total_return": -0.9998387900072009,
+          "max_drawdown": -0.9998493404702409,
+          "time_in_market": 0.29950946840063886
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 5251,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.3759283945915064,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -15.326675314333272,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.7299694364431861,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 1.756195362375564e-19,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.9998493404702409,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -27.326675314333265,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "range_breakout",
+        "params": {
+          "h_hours": 4,
+          "n_hours": 6
+        },
+        "stats": {
+          "n_trades": 4138,
+          "n_days": 1461,
+          "win_rate": 0.3970517158047366,
+          "expectancy_bps": -17.516189666068527,
+          "gross_expectancy_bps": -5.516189666068521,
+          "profit_factor": 0.765405655504105,
+          "avg_win_bps": 143.93509233796527,
+          "avg_loss_bps": -123.83460903786316,
+          "sharpe": -2.891608183799655,
+          "total_return": -0.999682298095213,
+          "max_drawdown": -0.9997084931152059,
+          "time_in_market": 0.47205110654802646
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 4138,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.3970517158047366,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -17.516189666068527,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.765405655504105,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 1.8733977604506416e-15,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.9997084931152059,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -29.51618966606852,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "range_breakout",
+        "params": {
+          "h_hours": 1,
+          "n_hours": 12
+        },
+        "stats": {
+          "n_trades": 3903,
+          "n_days": 1461,
+          "win_rate": 0.3794517038175762,
+          "expectancy_bps": -14.113243165244835,
+          "gross_expectancy_bps": -2.1132431652448354,
+          "profit_factor": 0.7010994283452587,
+          "avg_win_bps": 87.24151212369328,
+          "avg_loss_bps": -76.08945810451708,
+          "sharpe": -3.5577803488102013,
+          "total_return": -0.9970635437157238,
+          "max_drawdown": -0.9972082474344983,
+          "time_in_market": 0.1113107460643395
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 3903,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.3794517038175762,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -14.113243165244835,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.7010994283452587,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 1.2842001010800434e-22,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.9972082474344983,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -26.11324316524483,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "range_breakout",
+        "params": {
+          "h_hours": 2,
+          "n_hours": 12
+        },
+        "stats": {
+          "n_trades": 3383,
+          "n_days": 1461,
+          "win_rate": 0.3863434821164647,
+          "expectancy_bps": -13.611718775792363,
+          "gross_expectancy_bps": -1.6117187757923608,
+          "profit_factor": 0.7696028680161648,
+          "avg_win_bps": 117.6871340351145,
+          "avg_loss_bps": -96.2743395001928,
+          "sharpe": -2.397340626415051,
+          "total_return": -0.9937413933332968,
+          "max_drawdown": -0.9942567999910727,
+          "time_in_market": 0.1929614419347479
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 3383,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.3863434821164647,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -13.611718775792363,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.7696028680161648,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 4.270867207790299e-12,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.9942567999910727,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -25.611718775792355,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "range_breakout",
+        "params": {
+          "h_hours": 4,
+          "n_hours": 12
+        },
+        "stats": {
+          "n_trades": 2808,
+          "n_days": 1461,
+          "win_rate": 0.4131054131054131,
+          "expectancy_bps": -16.080775543995628,
+          "gross_expectancy_bps": -4.080775543995621,
+          "profit_factor": 0.7956535767573613,
+          "avg_win_bps": 151.56645160767383,
+          "avg_loss_bps": -134.0848917429863,
+          "sharpe": -2.053658472950329,
+          "total_return": -0.9940364068464964,
+          "max_drawdown": -0.9946537345059567,
+          "time_in_market": 0.3203285420944558
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 2808,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.4131054131054131,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -16.080775543995628,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.7956535767573613,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 2.2644091559747756e-10,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.9946537345059567,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -28.080775543995614,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "range_breakout",
+        "params": {
+          "h_hours": 1,
+          "n_hours": 24
+        },
+        "stats": {
+          "n_trades": 2502,
+          "n_days": 1461,
+          "win_rate": 0.40367705835331735,
+          "expectancy_bps": -13.507772309161611,
+          "gross_expectancy_bps": -1.5077723091616115,
+          "profit_factor": 0.733620021393274,
+          "avg_win_bps": 92.15507535089519,
+          "avg_loss_bps": -85.03557132836897,
+          "sharpe": -2.5356960992729434,
+          "total_return": -0.9731020305726567,
+          "max_drawdown": -0.9734886626111264,
+          "time_in_market": 0.07135523613963039
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 2502,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.40367705835331735,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -13.507772309161611,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.733620021393274,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 3.9151345273231695e-15,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.9734886626111264,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -25.507772309161606,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "range_breakout",
+        "params": {
+          "h_hours": 2,
+          "n_hours": 24
+        },
+        "stats": {
+          "n_trades": 2194,
+          "n_days": 1461,
+          "win_rate": 0.4001823154056518,
+          "expectancy_bps": -10.96520185890464,
+          "gross_expectancy_bps": 1.0347981410953606,
+          "profit_factor": 0.8192594558171199,
+          "avg_win_bps": 124.20086356681249,
+          "avg_loss_bps": -101.14438532682233,
+          "sharpe": -1.467484037669812,
+          "total_return": -0.9364127657344741,
+          "max_drawdown": -0.939370724010449,
+          "time_in_market": 0.12514259639516312
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 2194,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.4001823154056518,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -10.96520185890464,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.8192594558171199,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 1.2606217485125578e-07,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.939370724010449,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -22.965201858904635,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      },
+      {
+        "strategy": "range_breakout",
+        "params": {
+          "h_hours": 4,
+          "n_hours": 24
+        },
+        "stats": {
+          "n_trades": 1872,
+          "n_days": 1461,
+          "win_rate": 0.422008547008547,
+          "expectancy_bps": -10.618499662075848,
+          "gross_expectancy_bps": 1.3815003379241626,
+          "profit_factor": 0.8634082279496712,
+          "avg_win_bps": 159.04995639021018,
+          "avg_loss_bps": -134.4984259849095,
+          "sharpe": -1.1315619161637334,
+          "total_return": -0.9066821943201875,
+          "max_drawdown": -0.9237883930786939,
+          "time_in_market": 0.2135523613963039
+        },
+        "gates": [
+          {
+            "name": "n_trades",
+            "value": 1872,
+            "threshold": 400,
+            "passed": true
+          },
+          {
+            "name": "win_rate",
+            "value": 0.422008547008547,
+            "threshold": 0.51,
+            "passed": false
+          },
+          {
+            "name": "expectancy_bps_net",
+            "value": -10.618499662075848,
+            "threshold": 0.0,
+            "passed": false
+          },
+          {
+            "name": "profit_factor",
+            "value": 0.8634082279496712,
+            "threshold": 1.1,
+            "passed": false
+          },
+          {
+            "name": "deflated_sharpe_ratio",
+            "value": 5.1099064591799104e-06,
+            "threshold": 0.95,
+            "passed": false
+          },
+          {
+            "name": "max_drawdown",
+            "value": -0.9237883930786939,
+            "threshold": -0.3,
+            "passed": false
+          },
+          {
+            "name": "cost_stress_expectancy_bps",
+            "value": -22.61849966207584,
+            "threshold": 0.0,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "failed": [
+          "win_rate",
+          "expectancy_bps_net",
+          "profit_factor",
+          "deflated_sharpe_ratio",
+          "max_drawdown",
+          "cost_stress_expectancy_bps"
+        ]
+      }
+    ],
+    "finalists": [],
+    "winner": null,
+    "lockbox": null,
+    "status": "no_candidate_in_development",
+    "costs_round_trip_bps": 11.999999999999998
+  }
+]
